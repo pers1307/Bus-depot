@@ -17,7 +17,6 @@
             </li>
 
             <li class="treeview">
-
                 <a href="#">
                     <i class="fa fa-pie-chart"></i>
                     <span>Водители</span>
@@ -35,7 +34,9 @@
                         </a>
                     </li>
                 </ul>
+            </li>
 
+            <li class="treeview">
                 <a href="#">
                     <i class="fa fa-pie-chart"></i>
                     <span>Автопарк</span>
@@ -53,7 +54,9 @@
                         </a>
                     </li>
                 </ul>
+            </li>
 
+            <li class="treeview">
                 <a href="#">
                     <i class="fa fa-pie-chart"></i>
                     <span>Маршруты</span>
@@ -71,7 +74,9 @@
                         </a>
                     </li>
                 </ul>
+            </li>
 
+            <li class="treeview">
                 <a href="#">
                     <i class="fa fa-pie-chart"></i>
                     <span>Расписание</span>
@@ -90,6 +95,7 @@
                     </li>
                 </ul>
             </li>
+
         </ul>
     </section>
 </aside>

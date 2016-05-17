@@ -1,18 +1,18 @@
 <?php
 
-namespace backend\models;
+namespace backend\controllers;
 
 use Yii;
-use backend\models\BusType;
-use backend\models\BusTypeSearch;
+use backend\models\Bus;
+use backend\models\BusSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * BusTypeController implements the CRUD actions for BusType model.
+ * BusController implements the CRUD actions for Bus model.
  */
-class BusTypeController extends Controller
+class BusController extends Controller
 {
     /**
      * @inheritdoc
@@ -30,12 +30,12 @@ class BusTypeController extends Controller
     }
 
     /**
-     * Lists all BusType models.
+     * Lists all Bus models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new BusTypeSearch();
+        $searchModel = new BusSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -45,7 +45,7 @@ class BusTypeController extends Controller
     }
 
     /**
-     * Displays a single BusType model.
+     * Displays a single Bus model.
      * @param string $id
      * @return mixed
      */
@@ -57,13 +57,13 @@ class BusTypeController extends Controller
     }
 
     /**
-     * Creates a new BusType model.
+     * Creates a new Bus model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new BusType();
+        $model = new Bus();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -75,7 +75,7 @@ class BusTypeController extends Controller
     }
 
     /**
-     * Updates an existing BusType model.
+     * Updates an existing Bus model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param string $id
      * @return mixed
@@ -94,7 +94,7 @@ class BusTypeController extends Controller
     }
 
     /**
-     * Deletes an existing BusType model.
+     * Deletes an existing Bus model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param string $id
      * @return mixed
@@ -107,15 +107,15 @@ class BusTypeController extends Controller
     }
 
     /**
-     * Finds the BusType model based on its primary key value.
+     * Finds the Bus model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param string $id
-     * @return BusType the loaded model
+     * @return Bus the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = BusType::findOne($id)) !== null) {
+        if (($model = Bus::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
