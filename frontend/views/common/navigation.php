@@ -9,7 +9,7 @@
             <a href="#top" onclick = $("#menu-close").click(); >Главная</a>
         </li>
         <li>
-            <a href="#about" onclick = $("#menu-close").click(); >Расписание</a>
+            <a href="#timetable" onclick = $("#menu-close").click(); >Расписание</a>
         </li>
         <li>
             <a href="#contact" onclick = $("#menu-close").click(); >Контакты</a>
