@@ -12,6 +12,7 @@ return [
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
     'modules' => [],
+    'defaultRoute'=> '/autorization/login',
     'components' => [
         'user' => [
             'identityClass' => 'common\models\User',

@@ -37,21 +37,21 @@ AppAsset::register($this);
 <body>
 <?php $this->beginBody() ?>
 
-<?= $this->render('//common/navigation') ?>
+    <?= $this->render('//common/navigation') ?>
 
-<?= $this->render('//common/header') ?>
+    <?= $this->render('//common/header') ?>
 
-<?= $this->render('//common/title') ?>
+    <?= $this->render('//common/title') ?>
 
-<?= $this->render('//common/advantages') ?>
+    <?= $this->render('//common/advantages') ?>
 
-<?= $content ?>
+    <?= $content ?>
 
-<?= $this->render('//common/call') ?>
+    <?= $this->render('//common/call') ?>
 
-<?= $this->render('//common/map') ?>
+    <?= $this->render('//common/map') ?>
 
-<?= $this->render('//common/footer') ?>
+    <?= $this->render('//common/footer') ?>
 
 <?php $this->endBody() ?>
 </body>

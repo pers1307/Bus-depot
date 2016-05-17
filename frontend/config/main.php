@@ -28,6 +28,7 @@ return [
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',
+            //'errorAction' => 'main/error',
         ],
         'urlManager' => [
             'enablePrettyUrl' => true,
