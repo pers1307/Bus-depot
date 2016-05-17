@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50538
 File Encoding         : 65001
 
-Date: 2016-05-17 16:54:24
+Date: 2016-05-17 17:15:31
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -59,13 +59,15 @@ DROP TABLE IF EXISTS `class`;
 CREATE TABLE `class` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  CONSTRAINT `bus_id` FOREIGN KEY (`id`) REFERENCES `driver` (`id_class`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of class
 -- ----------------------------
+INSERT INTO `class` VALUES ('1', '1 класс (начальный)');
+INSERT INTO `class` VALUES ('2', '2 класс (средний)');
+INSERT INTO `class` VALUES ('3', '3 класс (высший)');
 
 -- ----------------------------
 -- Table structure for driver
@@ -80,6 +82,7 @@ CREATE TABLE `driver` (
   `id_route` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `id_class` (`id_class`),
+  CONSTRAINT `id_class` FOREIGN KEY (`id_class`) REFERENCES `class` (`id`),
   CONSTRAINT `passport_id` FOREIGN KEY (`id`) REFERENCES `passport_data` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

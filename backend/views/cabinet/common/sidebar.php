@@ -24,7 +24,7 @@
                 </a>
                 <ul class="treeview-menu">
                     <li>
-                        <a href="">
+                        <a href="/driverclass/">
                             <i class="fa fa-database"></i> Классы
                         </a>
                     </li>
