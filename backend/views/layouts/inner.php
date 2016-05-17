@@ -8,6 +8,7 @@ use backend\assets\InnerAsset;
 
 InnerAsset::register($this);
 ?>
+
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>">
@@ -26,7 +27,7 @@ InnerAsset::register($this);
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
-<body class="hold-transition skin-blue sidebar-mini">
+<body class="hold-transition skin-black sidebar-mini">
 <?php $this->beginBody() ?>
 
 <div class="wrapper">
