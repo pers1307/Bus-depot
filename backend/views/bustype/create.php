@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model backend\models\BusType */
 
-$this->title = 'Create Bus Type';
+$this->title = 'Добавить тип автобуса';
 $this->params['breadcrumbs'][] = ['label' => 'Bus Types', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

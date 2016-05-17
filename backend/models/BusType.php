@@ -11,7 +11,7 @@ use Yii;
  * @property string $name
  * @property integer $capacity
  *
- * @property Bus $id0
+ * @property Bus[] $buses
  */
 class BusType extends \yii\db\ActiveRecord
 {
@@ -31,7 +31,6 @@ class BusType extends \yii\db\ActiveRecord
         return [
             [['capacity'], 'integer'],
             [['name'], 'string', 'max' => 255],
-            [['id'], 'exist', 'skipOnError' => true, 'targetClass' => Bus::className(), 'targetAttribute' => ['id' => 'id_type']],
         ];
     }
 
@@ -41,17 +40,17 @@ class BusType extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'name' => 'Name',
-            'capacity' => 'Capacity',
+            'id' => 'Идентификатор',
+            'name' => 'Название',
+            'capacity' => 'Вместимость',
         ];
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getBus()
+    public function getBuses()
     {
-        return $this->hasOne(Bus::className(), ['id_type' => 'id']);
+        return $this->hasMany(Bus::className(), ['id_type' => 'id']);
     }
 }

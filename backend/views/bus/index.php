@@ -7,28 +7,33 @@ use yii\grid\GridView;
 /* @var $searchModel backend\models\BusSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Buses';
+$this->title = 'Автобусы';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="bus-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <div class="col-lg-12">
 
-    <p>
-        <?= Html::a('Create Bus', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
-    <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+        <div class="text-center">
+            <h1><?= Html::encode($this->title) ?></h1>
+        </div>
 
-            'id',
-            'number',
-            'id_type',
+        <p>
+            <?= Html::a('Добавить автобус', ['create'], ['class' => 'btn btn-success']) ?>
+        </p>
+        <?= GridView::widget([
+            'dataProvider' => $dataProvider,
+            'filterModel' => $searchModel,
+            'columns' => [
+                ['class' => 'yii\grid\SerialColumn'],
 
-            ['class' => 'yii\grid\ActionColumn'],
-        ],
-    ]); ?>
+                'id',
+                'number',
+                'id_type',
+
+                ['class' => 'yii\grid\ActionColumn'],
+            ],
+        ]); ?>
+    </div>
+
 </div>

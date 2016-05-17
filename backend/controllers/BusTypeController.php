@@ -10,10 +10,12 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * BusTypeController implements the CRUD actions for BusType model.
+ * BustypeController implements the CRUD actions for BusType model.
  */
-class BusTypeController extends Controller
+class BustypeController extends Controller
 {
+    public $layout = 'inner';
+
     /**
      * @inheritdoc
      */

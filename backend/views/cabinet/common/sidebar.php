@@ -18,19 +18,19 @@
 
             <li class="treeview">
                 <a href="#">
-                    <i class="fa fa-pie-chart"></i>
+                    <i class="fa fa-users"></i>
                     <span>Водители</span>
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
                     <li>
                         <a href="">
-                            <i class="fa fa-circle-o"></i> Классы водителей
+                            <i class="fa fa-database"></i> Классы
                         </a>
                     </li>
                     <li>
                         <a href="">
-                            <i class="fa fa-circle-o"></i> Паспортные данные
+                            <i class="fa fa-users"></i> Данные
                         </a>
                     </li>
                 </ul>
@@ -38,19 +38,19 @@
 
             <li class="treeview">
                 <a href="#">
-                    <i class="fa fa-pie-chart"></i>
+                    <i class="fa fa-bus"></i>
                     <span>Автопарк</span>
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
                     <li>
-                        <a href="">
-                            <i class="fa fa-circle-o"></i> Автобусы
+                        <a href="/bus/">
+                            <i class="fa fa-bus"></i> Автобусы
                         </a>
                     </li>
                     <li>
-                        <a href="">
-                            <i class="fa fa-circle-o"></i> Типы автобусов
+                        <a href="/bustype/">
+                            <i class="fa fa-database"></i> Типы автобусов
                         </a>
                     </li>
                 </ul>

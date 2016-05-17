@@ -37,19 +37,18 @@ InnerAsset::register($this);
     <?= $this->render('//cabinet/common/sidebar') ?>
 
     <div class="content-wrapper">
-        <section class="content-header">
-            <h1>
-                Dashboard
-                <small>Контрольная панель</small>
-            </h1>
-        </section>
+<!--        <section class="content-header">-->
+<!--            <h1>--><?//= Html::encode($this->title) ?><!--</h1>-->
+<!--        </section>-->
 
-        <?= $content ?>
+        <div class="col-lg-12">
+            <?= $content ?>
+        </div>
+
     </div>
-
-    <?= $this->render('//cabinet/common/footer') ?>
-
 </div>
+
+<?= $this->render('//cabinet/common/footer') ?>
 
 <?php $this->endBody() ?>
 </body>

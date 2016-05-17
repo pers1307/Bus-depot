@@ -11,7 +11,7 @@ use Yii;
  * @property string $number
  * @property string $id_type
  *
- * @property BusType $busType
+ * @property BusType $idType
  */
 class Bus extends \yii\db\ActiveRecord
 {
@@ -31,6 +31,7 @@ class Bus extends \yii\db\ActiveRecord
         return [
             [['id_type'], 'integer'],
             [['number'], 'string', 'max' => 10],
+            [['id_type'], 'exist', 'skipOnError' => true, 'targetClass' => BusType::className(), 'targetAttribute' => ['id_type' => 'id']],
         ];
     }
 
@@ -49,7 +50,7 @@ class Bus extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getBusType()
+    public function getIdType()
     {
         return $this->hasOne(BusType::className(), ['id' => 'id_type']);
     }
