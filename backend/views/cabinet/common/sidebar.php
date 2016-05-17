@@ -17,15 +17,78 @@
             </li>
 
             <li class="treeview">
-<!--                <a href="#">-->
-<!--                    <i class="fa fa-pie-chart"></i>-->
-<!--                    <span>Торговля</span>-->
-<!--                    <i class="fa fa-angle-left pull-right"></i>-->
-<!--                </a>-->
-<!--                <ul class="treeview-menu">-->
-<!--                    <li><a href=""><i class="fa fa-circle-o"></i> Текущие открытые сделки</a></li>-->
-<!--                    <li><a href=""><i class="fa fa-circle-o"></i> Мои торговые системы</a></li>-->
-<!--                </ul>-->
+
+                <a href="#">
+                    <i class="fa fa-pie-chart"></i>
+                    <span>Водители</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li>
+                        <a href="">
+                            <i class="fa fa-circle-o"></i> Классы водителей
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <i class="fa fa-circle-o"></i> Паспортные данные
+                        </a>
+                    </li>
+                </ul>
+
+                <a href="#">
+                    <i class="fa fa-pie-chart"></i>
+                    <span>Автопарк</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li>
+                        <a href="">
+                            <i class="fa fa-circle-o"></i> Автобусы
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <i class="fa fa-circle-o"></i> Типы автобусов
+                        </a>
+                    </li>
+                </ul>
+
+                <a href="#">
+                    <i class="fa fa-pie-chart"></i>
+                    <span>Маршруты</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li>
+                        <a href="">
+                            <i class="fa fa-circle-o"></i> Станции
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <i class="fa fa-circle-o"></i> Маршруты
+                        </a>
+                    </li>
+                </ul>
+
+                <a href="#">
+                    <i class="fa fa-pie-chart"></i>
+                    <span>Расписание</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li>
+                        <a href="">
+                            <i class="fa fa-circle-o"></i> Добавить рейс
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <i class="fa fa-circle-o"></i> Причины отмены рейсов
+                        </a>
+                    </li>
+                </ul>
             </li>
         </ul>
     </section>
