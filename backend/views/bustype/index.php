@@ -19,25 +19,10 @@ $this->params['breadcrumbs'][] = $this->title;
     </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-            [
-                'attribute' => 'name',
-                'label'  => 'Название',
-                'format' => 'raw',
-                'value' => function($data){
-                    return $data;
-                },
-            ],
-            [
-                'attribute' => 'capacity',
-                'label'  => 'Вместимость',
-                'format' => 'raw',
-                'value' => function($data){
-                    return $data;
-                },
-            ],
+            'name',
+            'capacity',
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>

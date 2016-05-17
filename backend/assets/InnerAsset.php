@@ -12,7 +12,6 @@ class InnerAsset extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
-        'css/site.css',
         'https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css',
         'https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css',
         'dist/css/AdminLTE.min.css',
@@ -23,6 +22,7 @@ class InnerAsset extends AssetBundle
         'plugins/datepicker/datepicker3.css',
         'plugins/daterangepicker/daterangepicker-bs3.css',
         'plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css',
+        'css/site.css',
     ];
     public $js = [
         'plugins/jQuery/jQuery-2.1.4.min.js',

@@ -5,7 +5,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model backend\models\BusType */
 
-$this->title = 'Update Bus Type: ' . $model->name;
+$this->title = 'Обновить тип: ' . $model->name;
 $this->params['breadcrumbs'][] = ['label' => 'Bus Types', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Update';
@@ -18,4 +18,5 @@ $this->params['breadcrumbs'][] = 'Update';
         'model' => $model,
     ]) ?>
 
+    <a href="/bustype/">Назад</a>
 </div>

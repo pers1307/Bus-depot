@@ -37,18 +37,13 @@ InnerAsset::register($this);
     <?= $this->render('//cabinet/common/sidebar') ?>
 
     <div class="content-wrapper">
-<!--        <section class="content-header">-->
-<!--            <h1>--><?//= Html::encode($this->title) ?><!--</h1>-->
-<!--        </section>-->
-
-        <div class="col-lg-12">
+        <div class="col-lg-12" style="height: 850px">
             <?= $content ?>
         </div>
 
     </div>
+    <?= $this->render('//cabinet/common/footer') ?>
 </div>
-
-<?= $this->render('//cabinet/common/footer') ?>
 
 <?php $this->endBody() ?>
 </body>

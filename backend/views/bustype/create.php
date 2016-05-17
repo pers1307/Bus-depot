@@ -18,4 +18,6 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
     ]) ?>
 
+    <a href="/bustype/">Назад</a>
+
 </div>
