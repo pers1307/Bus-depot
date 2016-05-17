@@ -2,15 +2,15 @@
 Navicat MySQL Data Transfer
 
 Source Server         : localhost
-Source Server Version : 50548
+Source Server Version : 50538
 Source Host           : localhost:3306
 Source Database       : bus
 
 Target Server Type    : MYSQL
-Target Server Version : 50548
+Target Server Version : 50538
 File Encoding         : 65001
 
-Date: 2016-05-15 16:58:28
+Date: 2016-05-17 16:54:24
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -24,7 +24,8 @@ CREATE TABLE `bus` (
   `number` varchar(10) DEFAULT NULL,
   `id_type` int(10) unsigned DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `id_type` (`id_type`)
+  KEY `id_type` (`id_type`),
+  CONSTRAINT `id_type` FOREIGN KEY (`id_type`) REFERENCES `bus_type` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -39,13 +40,17 @@ CREATE TABLE `bus_type` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
   `capacity` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  CONSTRAINT `type` FOREIGN KEY (`id`) REFERENCES `bus` (`id_type`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of bus_type
 -- ----------------------------
+INSERT INTO `bus_type` VALUES ('2', 'Особо малый', '10');
+INSERT INTO `bus_type` VALUES ('3', 'Малые', '40');
+INSERT INTO `bus_type` VALUES ('4', 'Средний', '65');
+INSERT INTO `bus_type` VALUES ('5', 'Большой', '110');
+INSERT INTO `bus_type` VALUES ('6', 'Особо большой', '150');
 
 -- ----------------------------
 -- Table structure for class
@@ -101,6 +106,22 @@ CREATE TABLE `flight` (
 -- ----------------------------
 -- Records of flight
 -- ----------------------------
+
+-- ----------------------------
+-- Table structure for migration
+-- ----------------------------
+DROP TABLE IF EXISTS `migration`;
+CREATE TABLE `migration` (
+  `version` varchar(180) NOT NULL,
+  `apply_time` int(11) DEFAULT NULL,
+  PRIMARY KEY (`version`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of migration
+-- ----------------------------
+INSERT INTO `migration` VALUES ('m000000_000000_base', '1463478271');
+INSERT INTO `migration` VALUES ('m130524_201442_init', '1463478281');
 
 -- ----------------------------
 -- Table structure for passport_data
@@ -176,4 +197,28 @@ CREATE TABLE `station` (
 
 -- ----------------------------
 -- Records of station
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for user
+-- ----------------------------
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE `user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `auth_key` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
+  `password_hash` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `password_reset_token` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `status` smallint(6) NOT NULL DEFAULT '10',
+  `created_at` int(11) NOT NULL,
+  `updated_at` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `username` (`username`),
+  UNIQUE KEY `email` (`email`),
+  UNIQUE KEY `password_reset_token` (`password_reset_token`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- ----------------------------
+-- Records of user
 -- ----------------------------
