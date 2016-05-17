@@ -1,5 +1,8 @@
 <?php
 
+/* @var $this \yii\web\View */
+/* @var $content string */
+
 use yii\helpers\Html;
 use frontend\assets\AppAsset;
 
@@ -42,7 +45,7 @@ AppAsset::register($this);
 
 <?= $this->render('//common/advantages') ?>
 
-<?= $this->render('//common/timetable') ?>
+<?= $content ?>
 
 <?= $this->render('//common/call') ?>
 

@@ -1,9 +1,21 @@
 <?php
 /* @var $this yii\web\View */
 ?>
-<h1>main/index</h1>
 
-<p>
-    You may change the content of this page by modifying
-    the file <code><?= __FILE__; ?></code>.
-</p>
+<aside id="timetable" class="callout">
+    <div class="text-vertical-center">
+        <h1>Расписание</h1>
+    </div>
+</aside>
+
+<section class="portfolio">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 col-lg-offset-1 text-center">
+                <div class="row">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
