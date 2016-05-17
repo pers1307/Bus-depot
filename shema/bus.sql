@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50538
 File Encoding         : 65001
 
-Date: 2016-05-17 17:15:31
+Date: 2016-05-17 17:58:04
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -157,11 +157,15 @@ CREATE TABLE `reason` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of reason
 -- ----------------------------
+INSERT INTO `reason` VALUES ('1', 'Поломка автобуса');
+INSERT INTO `reason` VALUES ('2', 'Заболел водитель');
+INSERT INTO `reason` VALUES ('3', 'Маршрут блокирован');
+INSERT INTO `reason` VALUES ('4', 'Погодные условия');
 
 -- ----------------------------
 -- Table structure for route
@@ -179,7 +183,9 @@ CREATE TABLE `route` (
 duration` double DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `id_start` (`start_id_station`),
-  KEY `id_end` (`end_id_station`)
+  KEY `id_end` (`end_id_station`),
+  CONSTRAINT `id_end` FOREIGN KEY (`end_id_station`) REFERENCES `station` (`id`),
+  CONSTRAINT `id_start` FOREIGN KEY (`start_id_station`) REFERENCES `station` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -193,9 +199,7 @@ DROP TABLE IF EXISTS `station`;
 CREATE TABLE `station` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  CONSTRAINT `id_end` FOREIGN KEY (`id`) REFERENCES `route` (`end_id_station`),
-  CONSTRAINT `id_start` FOREIGN KEY (`id`) REFERENCES `route` (`start_id_station`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------

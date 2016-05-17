@@ -58,19 +58,19 @@
 
             <li class="treeview">
                 <a href="#">
-                    <i class="fa fa-pie-chart"></i>
+                    <i class="fa fa-truck"></i>
                     <span>Маршруты</span>
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
                     <li>
-                        <a href="">
-                            <i class="fa fa-circle-o"></i> Станции
+                        <a href="/station/">
+                            <i class="fa fa-building"></i> Станции
                         </a>
                     </li>
                     <li>
                         <a href="">
-                            <i class="fa fa-circle-o"></i> Маршруты
+                            <i class="fa fa-map"></i> Маршруты
                         </a>
                     </li>
                 </ul>
@@ -78,19 +78,19 @@
 
             <li class="treeview">
                 <a href="#">
-                    <i class="fa fa-pie-chart"></i>
+                    <i class="fa fa-calendar"></i>
                     <span>Расписание</span>
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
                     <li>
                         <a href="">
-                            <i class="fa fa-circle-o"></i> Добавить рейс
+                            <i class="fa fa-calendar-plus-o"></i> Добавить рейс
                         </a>
                     </li>
                     <li>
-                        <a href="">
-                            <i class="fa fa-circle-o"></i> Причины отмены рейсов
+                        <a href="/reason/">
+                            <i class="fa fa-calendar-minus-o"></i> Причины отмены рейсов
                         </a>
                     </li>
                 </ul>
