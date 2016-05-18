@@ -36,11 +36,10 @@ InnerAsset::register($this);
 
     <?= $this->render('//cabinet/common/sidebar') ?>
 
-    <div class="content-wrapper">
-        <div class="col-lg-12" style="height: 850px">
+    <div class="content-wrapper" style="background-color: #ffffff">
+        <section class="content" style="background-color: #ffffff">
             <?= $content ?>
-        </div>
-
+        </section>
     </div>
     <?= $this->render('//cabinet/common/footer') ?>
 </div>
