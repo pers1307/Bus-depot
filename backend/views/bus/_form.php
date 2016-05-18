@@ -14,9 +14,6 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'number')->textInput(['maxlength' => true]) ?>
 
-<!--    --><?//= $form->field($model, 'id_type')->textInput(['maxlength' => true]) ?>
-
-
     <?=
     $form->field($model, 'id_type')->widget(\kartik\select2\Select2::classname(), [
         'data' => $busTypes,
@@ -25,7 +22,6 @@ use yii\widgets\ActiveForm;
             'allowClear' => true
         ],
     ])
-        //->label('Продукт')
     ?>
 
     <div class="form-group">

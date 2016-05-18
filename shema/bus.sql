@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50538
 File Encoding         : 65001
 
-Date: 2016-05-17 17:58:04
+Date: 2016-05-18 14:23:17
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -26,11 +26,26 @@ CREATE TABLE `bus` (
   PRIMARY KEY (`id`),
   KEY `id_type` (`id_type`),
   CONSTRAINT `id_type` FOREIGN KEY (`id_type`) REFERENCES `bus_type` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of bus
 -- ----------------------------
+INSERT INTO `bus` VALUES ('1', 'U-100', '3');
+INSERT INTO `bus` VALUES ('2', 'U-101', '5');
+INSERT INTO `bus` VALUES ('3', 'T-20', '5');
+INSERT INTO `bus` VALUES ('4', 'H-54', '3');
+INSERT INTO `bus` VALUES ('5', 'T-55', '6');
+INSERT INTO `bus` VALUES ('6', 'T-100', '4');
+INSERT INTO `bus` VALUES ('7', 'A-1', '2');
+INSERT INTO `bus` VALUES ('8', 'A-2', '3');
+INSERT INTO `bus` VALUES ('9', 'A-3', '4');
+INSERT INTO `bus` VALUES ('10', 'F-600', '6');
+INSERT INTO `bus` VALUES ('11', 'TT-200', '4');
+INSERT INTO `bus` VALUES ('12', 'TT-99', '4');
+INSERT INTO `bus` VALUES ('13', 'Sylvia', '4');
+INSERT INTO `bus` VALUES ('14', 'Mersedes', '2');
+INSERT INTO `bus` VALUES ('15', 'R-12', '3');
 
 -- ----------------------------
 -- Table structure for bus_type
@@ -200,11 +215,26 @@ CREATE TABLE `station` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of station
 -- ----------------------------
+INSERT INTO `station` VALUES ('1', 'Чкаловская');
+INSERT INTO `station` VALUES ('2', 'Машиностроительная');
+INSERT INTO `station` VALUES ('3', 'Проселочная');
+INSERT INTO `station` VALUES ('4', 'Угловая');
+INSERT INTO `station` VALUES ('5', '8 марта');
+INSERT INTO `station` VALUES ('6', 'Ботаническая');
+INSERT INTO `station` VALUES ('7', 'Декабристов');
+INSERT INTO `station` VALUES ('8', 'Варшавская');
+INSERT INTO `station` VALUES ('9', 'Маяковская');
+INSERT INTO `station` VALUES ('10', 'Театральная');
+INSERT INTO `station` VALUES ('11', 'Динамо');
+INSERT INTO `station` VALUES ('12', 'Студенческая');
+INSERT INTO `station` VALUES ('13', 'Спортивная');
+INSERT INTO `station` VALUES ('14', 'Пионерская');
+INSERT INTO `station` VALUES ('15', 'Аэропорт');
 
 -- ----------------------------
 -- Table structure for user

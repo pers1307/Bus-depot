@@ -54,8 +54,18 @@ class BusController extends Controller
      */
     public function actionView($id)
     {
+        $model = $this->findModel($id);
+
+        $busType = BusType::find()
+            ->where(['id' => $id])
+            ->one();
+
+        //var_dump($type);
+        //die;
+
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'type'  => $busType->name . ' (Вместимость: ' . $busType->capacity . ' человек)'
         ]);
     }
 
@@ -72,20 +82,9 @@ class BusController extends Controller
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
 
-            $busTypes = BusType::find()->all();
-
-            $busTypeArray = [];
-
-            foreach ($busTypes as $busType) {
-                $busTypeArray[$busType->id] = $busType->name . ' (Вместимость: ' . $busType->capacity . ' человек)';;
-            }
-
-            //print_r($busTypeArray);
-            //die;
-
             return $this->render('create', [
                 'model'    => $model,
-                'busTypes' => $busTypeArray
+                'busTypes' => $this->getAllBusType()
             ]);
         }
     }
@@ -105,6 +104,7 @@ class BusController extends Controller
         } else {
             return $this->render('update', [
                 'model' => $model,
+                'busTypes' => $this->getAllBusType()
             ]);
         }
     }
@@ -136,5 +136,21 @@ class BusController extends Controller
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
+    }
+
+    /**
+     * @return array
+     */
+    protected function getAllBusType()
+    {
+        $busTypes = BusType::find()->all();
+
+        $busTypeArray = [];
+
+        foreach ($busTypes as $busType) {
+            $busTypeArray[$busType->id] = $busType->name . ' (Вместимость: ' . $busType->capacity . ' человек)';;
+        }
+
+        return $busTypeArray;
     }
 }

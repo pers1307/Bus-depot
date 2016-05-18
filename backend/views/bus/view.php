@@ -6,12 +6,15 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model backend\models\Bus */
 
-$this->title = $model->id;
+$this->title = $model->number;
 $this->params['breadcrumbs'][] = ['label' => 'Buses', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
 <div class="bus-view">
+
+    <h1><?= Html::encode($this->title) ?></h1>
+
     <p>
         <?= Html::a('Обновить', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
 
@@ -28,7 +31,12 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'number',
-            'id_type',
+            //'id_type',
+            [
+                'label' => 'Тип автобуса',
+                'format' => 'raw',
+                'value' => $type
+            ],
         ],
     ]) ?>
 
