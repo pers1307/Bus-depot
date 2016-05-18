@@ -2,6 +2,7 @@
 
 namespace backend\controllers;
 
+use backend\models\BusType;
 use Yii;
 use backend\models\Bus;
 use backend\models\BusSearch;
@@ -70,8 +71,21 @@ class BusController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
+
+            $busTypes = BusType::find()->all();
+
+            $busTypeArray = [];
+
+            foreach ($busTypes as $busType) {
+                $busTypeArray[$busType->id] = $busType->name . ' (Вместимость: ' . $busType->capacity . ' человек)';;
+            }
+
+            //print_r($busTypeArray);
+            //die;
+
             return $this->render('create', [
-                'model' => $model,
+                'model'    => $model,
+                'busTypes' => $busTypeArray
             ]);
         }
     }

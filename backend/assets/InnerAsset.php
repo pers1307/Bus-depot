@@ -25,10 +25,11 @@ class InnerAsset extends AssetBundle
         'css/site.css',
     ];
     public $js = [
-        'plugins/jQuery/jQuery-2.1.4.min.js',
+        //'plugins/jQuery/jQuery-2.1.4.min.js',
         'https://code.jquery.com/ui/1.11.4/jquery-ui.min.js',
+        'bootstrap/js/bootstrap.min.js',
         'https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js',
-        'plugins/morris/morris.min.js',
+        //'plugins/morris/morris.min.js',
         'plugins/sparkline/jquery.sparkline.min.js',
         'plugins/jvectormap/jquery-jvectormap-1.2.2.min.js',
         'plugins/jvectormap/jquery-jvectormap-world-mill-en.js',
@@ -40,8 +41,7 @@ class InnerAsset extends AssetBundle
         'plugins/slimScroll/jquery.slimscroll.min.js',
         'plugins/fastclick/fastclick.min.js',
         'dist/js/app.min.js',
-        'dist/js/pages/dashboard.js',
-        'dist/js/pages/dashboard.js',
+        //'dist/js/pages/dashboard.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',

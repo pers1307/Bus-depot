@@ -41,9 +41,9 @@ class Bus extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'number' => 'Number',
-            'id_type' => 'Id Type',
+            'id' => 'Идентификатор',
+            'number' => 'Номер',
+            'id_type' => 'Тип автобуса',
         ];
     }
 

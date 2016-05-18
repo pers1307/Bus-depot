@@ -13,12 +13,12 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <div class="bus-view">
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Обновить', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
 
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
+        <?= Html::a('Удалить', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
+                'confirm' => 'Вы уверены, что хотите удалить этот автобус?',
                 'method' => 'post',
             ],
         ]) ?>
@@ -27,9 +27,10 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
             'number',
             'id_type',
         ],
     ]) ?>
+
+    <a href="/bus/">Назад</a>
 </div>
