@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50538
 File Encoding         : 65001
 
-Date: 2016-05-18 14:23:17
+Date: 2016-05-18 17:00:04
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -187,25 +187,40 @@ INSERT INTO `reason` VALUES ('4', 'Погодные условия');
 -- ----------------------------
 DROP TABLE IF EXISTS `route`;
 CREATE TABLE `route` (
-  `id` int(11) NOT NULL,
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `number` varchar(255) DEFAULT NULL,
   `start_id_station` int(10) unsigned DEFAULT NULL,
   `end_id_station` int(10) unsigned DEFAULT NULL,
-  `start_time` datetime DEFAULT NULL,
-  `end_time` datetime DEFAULT NULL,
   `interval` double DEFAULT NULL,
-  `
-duration` double DEFAULT NULL,
+  `duration` double DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `id_start` (`start_id_station`),
   KEY `id_end` (`end_id_station`),
   CONSTRAINT `id_end` FOREIGN KEY (`end_id_station`) REFERENCES `station` (`id`),
   CONSTRAINT `id_start` FOREIGN KEY (`start_id_station`) REFERENCES `station` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of route
 -- ----------------------------
+INSERT INTO `route` VALUES ('1', '034', '1', '2', '190', '95');
+INSERT INTO `route` VALUES ('2', '035', '4', '6', '50', '25');
+INSERT INTO `route` VALUES ('3', '088', '14', '15', '180', '90');
+INSERT INTO `route` VALUES ('4', '033', '4', '5', '240', '120');
+INSERT INTO `route` VALUES ('5', '063', '14', '13', '5000', '2500');
+INSERT INTO `route` VALUES ('6', '050', '1', '3', '260', '130');
+INSERT INTO `route` VALUES ('7', '003', '5', '4', '200', '100');
+INSERT INTO `route` VALUES ('8', '070', '12', '13', '126', '63');
+INSERT INTO `route` VALUES ('9', '077', '14', '12', '140', '70');
+INSERT INTO `route` VALUES ('10', 'С01', '1', '15', '900', '240');
+INSERT INTO `route` VALUES ('11', 'С02', '3', '15', '1900', '500');
+INSERT INTO `route` VALUES ('12', 'С03', '6', '15', '2000', '630');
+INSERT INTO `route` VALUES ('13', 'С04', '6', '16', '20000', '5000');
+INSERT INTO `route` VALUES ('14', 'С05', '1', '19', '9000', '6300');
+INSERT INTO `route` VALUES ('15', 'С06', '5', '17', '8000', '6000');
+INSERT INTO `route` VALUES ('16', 'С07', '10', '18', '600', '95');
+INSERT INTO `route` VALUES ('17', 'С08', '2', '17', '30000', '9000');
+INSERT INTO `route` VALUES ('18', 'С09', '7', '16', '90000', '9000');
 
 -- ----------------------------
 -- Table structure for station
@@ -215,7 +230,7 @@ CREATE TABLE `station` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of station
@@ -235,6 +250,10 @@ INSERT INTO `station` VALUES ('12', 'Студенческая');
 INSERT INTO `station` VALUES ('13', 'Спортивная');
 INSERT INTO `station` VALUES ('14', 'Пионерская');
 INSERT INTO `station` VALUES ('15', 'Аэропорт');
+INSERT INTO `station` VALUES ('16', 'Москва');
+INSERT INTO `station` VALUES ('17', 'Питер');
+INSERT INTO `station` VALUES ('18', 'Сухой Лог');
+INSERT INTO `station` VALUES ('19', 'Новосибирск');
 
 -- ----------------------------
 -- Table structure for user

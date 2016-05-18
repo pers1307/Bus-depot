@@ -69,7 +69,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="">
+                        <a href="/route/">
                             <i class="fa fa-map"></i> Маршруты
                         </a>
                     </li>

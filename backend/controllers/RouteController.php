@@ -2,18 +2,18 @@
 
 namespace backend\controllers;
 
-use backend\models\BusType;
+use backend\models\Station;
 use Yii;
-use backend\models\Bus;
-use backend\models\BusSearch;
+use backend\models\Route;
+use backend\models\RouteSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * BusController implements the CRUD actions for Bus model.
+ * RouteController implements the CRUD actions for Route model.
  */
-class BusController extends Controller
+class RouteController extends Controller
 {
     public $layout = 'inner';
 
@@ -33,12 +33,12 @@ class BusController extends Controller
     }
 
     /**
-     * Lists all Bus models.
+     * Lists all Route models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new BusSearch();
+        $searchModel = new RouteSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -48,7 +48,7 @@ class BusController extends Controller
     }
 
     /**
-     * Displays a single Bus model.
+     * Displays a single Route model.
      * @param string $id
      * @return mixed
      */
@@ -56,38 +56,42 @@ class BusController extends Controller
     {
         $model = $this->findModel($id);
 
-        $busType = BusType::find()
-            ->where(['id' => $id])
+        $startStation = Station::find()
+            ->where(['id' => $model->start_id_station])
+            ->one();
+
+        $endStation = Station::find()
+            ->where(['id' => $model->end_id_station])
             ->one();
 
         return $this->render('view', [
-            'model' => $this->findModel($id),
-            'type'  => $busType->name . ' (Вместимость: ' . $busType->capacity . ' человек)'
+            'model' => $model,
+            'startStation' => $startStation->name,
+            'endStation' => $endStation->name
         ]);
     }
 
     /**
-     * Creates a new Bus model.
+     * Creates a new Route model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Bus();
+        $model = new Route();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
-
             return $this->render('create', [
                 'model'    => $model,
-                'busTypes' => $this->getAllBusType()
+                'stations' => $this->getAllStations()
             ]);
         }
     }
 
     /**
-     * Updates an existing Bus model.
+     * Updates an existing Route model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param string $id
      * @return mixed
@@ -101,13 +105,12 @@ class BusController extends Controller
         } else {
             return $this->render('update', [
                 'model' => $model,
-                'busTypes' => $this->getAllBusType()
             ]);
         }
     }
 
     /**
-     * Deletes an existing Bus model.
+     * Deletes an existing Route model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param string $id
      * @return mixed
@@ -120,15 +123,15 @@ class BusController extends Controller
     }
 
     /**
-     * Finds the Bus model based on its primary key value.
+     * Finds the Route model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param string $id
-     * @return Bus the loaded model
+     * @return Route the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Bus::findOne($id)) !== null) {
+        if (($model = Route::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
@@ -138,16 +141,16 @@ class BusController extends Controller
     /**
      * @return array
      */
-    protected function getAllBusType()
+    protected function getAllStations()
     {
-        $busTypes = BusType::find()->all();
+        $stations = Station::find()->all();
 
-        $busTypeArray = [];
+        $stationsArray = [];
 
-        foreach ($busTypes as $busType) {
-            $busTypeArray[$busType->id] = $busType->name . ' (Вместимость: ' . $busType->capacity . ' человек)';
+        foreach ($stations as $station) {
+            $stationsArray[$station->id] = $station->name;
         }
 
-        return $busTypeArray;
+        return $stationsArray;
     }
 }

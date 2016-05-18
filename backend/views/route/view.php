@@ -4,24 +4,22 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $model backend\models\Bus */
+/* @var $model backend\models\Route */
 
-$this->title = $model->number;
-$this->params['breadcrumbs'][] = ['label' => 'Buses', 'url' => ['index']];
+$this->title = 'Маршрут : ' . $model->number;
+$this->params['breadcrumbs'][] = ['label' => 'Routes', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-
-<div class="bus-view">
+<div class="route-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
         <?= Html::a('Обновить', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-
         <?= Html::a('Удалить', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => 'Вы уверены, что хотите удалить этот автобус?',
+                'confirm' => 'Вы уверены, что хотите удалить этот маршрут?',
                 'method' => 'post',
             ],
         ]) ?>
@@ -32,12 +30,20 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'number',
             [
-                'label' => 'Тип автобуса',
+                'label' => 'Начальная станция',
                 'format' => 'raw',
-                'value' => $type
+                'value' => $startStation
             ],
+            [
+                'label' => 'Конечная станция',
+                'format' => 'raw',
+                'value' => $endStation
+            ],
+            'interval',
+            'duration',
         ],
     ]) ?>
 
-    <a href="/bus/">Назад</a>
+    <a href="/route/">Назад</a>
+
 </div>
