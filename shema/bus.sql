@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50538
 File Encoding         : 65001
 
-Date: 2016-05-18 17:00:04
+Date: 2016-05-19 13:35:33
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -151,12 +151,11 @@ CREATE TABLE `passport_data` (
   `patronymic` varchar(255) DEFAULT NULL,
   `surname` varchar(255) NOT NULL,
   `birth` datetime DEFAULT NULL,
-  `
-issued` text,
   `when` datetime DEFAULT NULL,
   `series` varchar(255) DEFAULT NULL,
   `number` varchar(255) DEFAULT NULL,
   `address` text,
+  `issued` text,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

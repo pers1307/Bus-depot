@@ -38,7 +38,7 @@ class Driver extends \yii\db\ActiveRecord
             [['id_class', 'id_bus', 'id_route'], 'integer'],
             [['start_work_date'], 'safe'],
             [['salary'], 'number'],
-            [['id_class'], 'exist', 'skipOnError' => true, 'targetClass' => Class::className(), 'targetAttribute' => ['id_class' => 'id']],
+            [['id_class'], 'exist', 'skipOnError' => true, 'targetClass' => DriverClass::className(), 'targetAttribute' => ['id_class' => 'id']],
             [['id'], 'exist', 'skipOnError' => true, 'targetClass' => PassportData::className(), 'targetAttribute' => ['id' => 'id']],
         ];
     }
@@ -63,7 +63,7 @@ class Driver extends \yii\db\ActiveRecord
      */
     public function getIdClass()
     {
-        return $this->hasOne(Class::className(), ['id' => 'id_class']);
+        return $this->hasOne(DriverClass::className(), ['id' => 'id_class']);
     }
 
     /**

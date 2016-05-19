@@ -29,7 +29,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="">
+                        <a href="/driver/">
                             <i class="fa fa-users"></i> Данные
                         </a>
                     </li>

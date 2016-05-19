@@ -12,12 +12,11 @@ use Yii;
  * @property string $patronymic
  * @property string $surname
  * @property string $birth
- * @property string $
-issued
  * @property string $when
  * @property string $series
  * @property string $number
  * @property string $address
+ * @property string $issued
  *
  * @property Driver $driver
  */
@@ -39,8 +38,7 @@ class PassportData extends \yii\db\ActiveRecord
         return [
             [['name', 'surname'], 'required'],
             [['birth', 'when'], 'safe'],
-            [['
-issued', 'address'], 'string'],
+            [['address', 'issued'], 'string'],
             [['name', 'patronymic', 'surname', 'series', 'number'], 'string', 'max' => 255],
         ];
     }
@@ -56,12 +54,11 @@ issued', 'address'], 'string'],
             'patronymic' => 'Patronymic',
             'surname' => 'Surname',
             'birth' => 'Birth',
-            '
-issued' => 'Issued',
             'when' => 'When',
             'series' => 'Series',
             'number' => 'Number',
             'address' => 'Address',
+            'issued' => 'Issued',
         ];
     }
 
