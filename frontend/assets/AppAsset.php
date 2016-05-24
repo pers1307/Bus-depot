@@ -16,6 +16,7 @@ class AppAsset extends AssetBundle
         'css/stylish-portfolio.css',
         'font-awesome/css/font-awesome.min.css',
         'font-awesome/css/font-awesome.min.css',
+        'http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic',
     ];
     public $js = [
         '/js/jquery.js',
