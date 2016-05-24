@@ -25,6 +25,3 @@ if ((int)$code === 0) {
     <a href="/">Вернуться</a>
 </div>
 <div class="clear"></div>
-
-
-
