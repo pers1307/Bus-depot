@@ -4,26 +4,9 @@ namespace backend\controllers;
 
 use backend\models\Bus;
 use backend\models\Route;
-use common\models\User;
-use yii\web\NotFoundHttpException;
 
-class CabinetController extends \yii\web\Controller
+class CabinetController extends CustomController
 {
-    /** @var string */
-    public $layout = 'inner';
-
-    public function beforeAction($action)
-    {
-        if (\Yii::$app->user->isGuest) {
-            throw new NotFoundHttpException(
-                'У вас нет доступа к данной странице. Пожалуйста авторизуйтесь.',
-                401
-            );
-        }
-
-        return true;
-    }
-
     /**
      * @return string
      */
@@ -34,10 +17,6 @@ class CabinetController extends \yii\web\Controller
 
         $countRoute = Route::find()
             ->count();
-
-        $userId = \Yii::$app->user->id;
-        $user = User::findIdentity($userId);
-        \Yii::$app->view->params['username'] = $user->username;
 
         return $this->render('index', [
             'countBus'   => $countBus,
