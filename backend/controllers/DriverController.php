@@ -2,10 +2,13 @@
 
 namespace backend\controllers;
 
+use backend\models\Bus;
+use backend\models\DriverClass;
+use backend\models\PassportData;
+use backend\models\Route;
 use Yii;
 use backend\models\Driver;
 use backend\models\DriverSearch;
-use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
@@ -14,8 +17,6 @@ use yii\filters\VerbFilter;
  */
 class DriverController extends CustomController
 {
-    public $layout = 'inner';
-
     /**
      * @inheritdoc
      */
@@ -66,12 +67,24 @@ class DriverController extends CustomController
     public function actionCreate()
     {
         $model = new Driver();
+        $passportData = new PassportData();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if (
+            $model->load(Yii::$app->request->post())
+            && $passportData->load(Yii::$app->request->post())
+        ) {
+            $passportData->save();
+            $model->link('passportData', $passportData);
+            $model->save();
+
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
-                'model' => $model,
+                'model'         => $model,
+                'buses'         => $this->getAllBus(),
+                'routes'        => $this->getAllRoute(),
+                'driverClasses' => $this->getAllDriverClass(),
+                'passportData'  => $passportData
             ]);
         }
     }
@@ -122,5 +135,53 @@ class DriverController extends CustomController
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
+    }
+
+    /**
+     * @return array
+     */
+    protected function getAllRoute()
+    {
+        $routes = Route::find()->all();
+
+        $routesArray = [];
+
+        foreach ($routes as $route) {
+            $routesArray[$route->id] = $route->number;
+        }
+
+        return $routesArray;
+    }
+
+    /**
+     * @return array
+     */
+    protected function getAllBus()
+    {
+        $buses = Bus::find()->all();
+
+        $busesArray = [];
+
+        foreach ($buses as $bus) {
+            $busesArray[$bus->id] = $bus->number;
+        }
+
+        return $busesArray;
+    }
+
+    /**
+     * @return array
+     */
+    protected function getAllDriverClass()
+    {
+        $driverClasses = DriverClass::find()->all();
+
+        $driverClassesArray = [];
+
+        foreach ($driverClasses as $driverClass) {
+            $driverClassesArray[$driverClass->id] = $driverClass->name;
+        }
+
+        return $driverClassesArray;
     }
 }

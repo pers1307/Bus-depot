@@ -36,7 +36,16 @@ class PassportData extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'surname'], 'required'],
+            [[
+                'name',
+                'surname',
+                'birth',
+                'when',
+                'series',
+                'number',
+                'address',
+                'issued'
+            ], 'required'],
             [['birth', 'when'], 'safe'],
             [['address', 'issued'], 'string'],
             [['name', 'patronymic', 'surname', 'series', 'number'], 'string', 'max' => 255],
@@ -49,16 +58,16 @@ class PassportData extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'name' => 'Name',
-            'patronymic' => 'Patronymic',
-            'surname' => 'Surname',
-            'birth' => 'Birth',
-            'when' => 'When',
-            'series' => 'Series',
-            'number' => 'Number',
-            'address' => 'Address',
-            'issued' => 'Issued',
+            'id' => 'Идентификатор',
+            'name' => 'Имя',
+            'patronymic' => 'Отчество',
+            'surname' => 'Фамилия',
+            'birth' => 'Дата рождения',
+            'when' => 'Дата выдачи',
+            'series' => 'Серия',
+            'number' => 'Номер',
+            'address' => 'Адрес',
+            'issued' => 'Кем выдан',
         ];
     }
 

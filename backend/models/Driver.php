@@ -34,7 +34,7 @@ class Driver extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id_class', 'start_work_date'], 'required'],
+            [['id_class', 'start_work_date', 'salary'], 'required'],
             [['id_class', 'id_bus', 'id_route'], 'integer'],
             [['start_work_date'], 'safe'],
             [['salary'], 'number'],
@@ -50,8 +50,8 @@ class Driver extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'Идентификатор',
-            'id_class' => 'Идентификатор класса',
-            'start_work_date' => 'Время начала работы',
+            'id_class' => 'Класс водителя',
+            'start_work_date' => 'Дата начала работы',
             'salary' => 'Зарплата',
             'id_bus' => 'Идентификатор автобуса',
             'id_route' => 'Идентификатор маршрута',
@@ -69,7 +69,7 @@ class Driver extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getId0()
+    public function getPassportData()
     {
         return $this->hasOne(PassportData::className(), ['id' => 'id']);
     }
