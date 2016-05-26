@@ -14,7 +14,7 @@ use Yii;
  * @property integer $id_bus
  * @property integer $id_route
  *
- * @property Class $idClass
+ * @property DriverClass $idClass
  * @property PassportData $id0
  * @property Flight[] $flights
  */
@@ -49,12 +49,12 @@ class Driver extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'id_class' => 'Id Class',
-            'start_work_date' => 'Start Work Date',
-            'salary' => 'Salary',
-            'id_bus' => 'Id Bus',
-            'id_route' => 'Id Route',
+            'id' => 'Идентификатор',
+            'id_class' => 'Идентификатор класса',
+            'start_work_date' => 'Время начала работы',
+            'salary' => 'Зарплата',
+            'id_bus' => 'Идентификатор автобуса',
+            'id_route' => 'Идентификатор маршрута',
         ];
     }
 

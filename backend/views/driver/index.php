@@ -7,16 +7,17 @@ use yii\grid\GridView;
 /* @var $searchModel backend\models\DriverSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Drivers';
+$this->title = 'Водители';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="driver-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <div class="text-center">
+        <h1><?= Html::encode($this->title) ?></h1>
+    </div>
 
     <p>
-        <?= Html::a('Create Driver', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Добавить водителя', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -24,12 +25,11 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
             'id_class',
             'start_work_date',
             'salary',
             'id_bus',
-            // 'id_route',
+            'id_route',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

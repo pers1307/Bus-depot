@@ -5,10 +5,10 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model backend\models\Driver */
 
-$this->title = 'Update Driver: ' . $model->id;
+$this->title = 'Обновить данные о водителе: ' . $model->id;
 $this->params['breadcrumbs'][] = ['label' => 'Drivers', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->params['breadcrumbs'][] = 'Обновить  ';
 ?>
 <div class="driver-update">
 
