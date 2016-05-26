@@ -5,7 +5,9 @@
                 <img src="http://www.placecage.com/160/160" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
-                <p>Логин пользователя</p>
+                <? if(!empty($this->params['username'])): ?>
+                    <p><?= $this->params['username'] ?></p>
+                <? endif; ?>
                 <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
         </div>

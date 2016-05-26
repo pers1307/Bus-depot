@@ -16,7 +16,11 @@ use yii\helpers\Html;
             'method' => 'post'
         ]) ?>
 
-        <p class="login-box-msg">Введите логин и пароль</p>
+        <? if(!empty($error)): ?>
+            <p class="login-box-msg text-danger"><?= $error ?></p>
+        <? else: ?>
+            <p class="login-box-msg">Введите логин и пароль</p>
+        <? endif; ?>
 
             <?= $form->field($model, 'login',
                     [

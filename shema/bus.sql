@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50538
 File Encoding         : 65001
 
-Date: 2016-05-19 13:35:33
+Date: 2016-05-24 17:13:28
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -272,8 +272,9 @@ CREATE TABLE `user` (
   UNIQUE KEY `username` (`username`),
   UNIQUE KEY `email` (`email`),
   UNIQUE KEY `password_reset_token` (`password_reset_token`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
+INSERT INTO `user` VALUES ('1', 'pers1307', '', '$2y$13$5NrLl1Kd4sh/oMX.OEbNX.wgYDijqGae0Pzhu2a2.v9OaQeGwVy2O', null, 'skulines@mail.ru', '10', '0', '0');

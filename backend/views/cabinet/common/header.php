@@ -12,8 +12,13 @@
                 <li class="dropdown user user-menu">
                     <a>
                         <img src="http://www.placecage.com/160/160" class="user-image" alt="User Image">
-                        <span class="hidden-xs">Пользователь</span>
+                        <? if(!empty($this->params['username'])): ?>
+                            <span class="hidden-xs"><?= $this->params['username'] ?></span>
+                        <? endif; ?>
                     </a>
+                </li>
+                <li>
+                    <a href="/autorization/logout/">Выйти</a>
                 </li>
             </ul>
         </div>

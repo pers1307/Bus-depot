@@ -5,19 +5,20 @@ namespace backend\controllers;
 use backend\models\LoginForm;
 use common\models\User;
 
-//use common\models\LoginForm;
-
 class AutorizationController extends \yii\web\Controller
 {
     public $layout = 'autorization';
 
     /**
-     * Страница авторизации
+     * Login page
      * @return string
      */
     public function actionLogin()
     {
-        //$model = new LoginForm();
+        if (!\Yii::$app->user->isGuest) {
+            $this->redirect('/cabinet/');
+        }
+
         $model = new LoginForm();
         $error = '';
 
@@ -28,12 +29,11 @@ class AutorizationController extends \yii\web\Controller
              */
             $user = User::findByUsername($model->login);
 
-            var_dump($user);
-
             if (!is_null($user)) {
 
                 if ($user->validatePassword($model->password)) {
-                    $this->redirect('/cabinet/');
+                    \Yii::$app->user->login($user);
+                    return $this->redirect('/cabinet/');
                 } else {
                     $error = 'Неправильный пароль';
                 }
@@ -48,11 +48,13 @@ class AutorizationController extends \yii\web\Controller
         ]);
     }
 
+    /**
+     * Logout page
+     */
     public function actionLogout()
     {
-        //Yii::$app->user->logout();
-
-        return $this->goHome();
+        \Yii::$app->user->logout();
+        $this->redirect('/autorization/login/');
     }
 
 }

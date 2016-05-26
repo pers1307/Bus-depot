@@ -4,6 +4,7 @@ namespace backend\controllers;
 
 use backend\models\Bus;
 use backend\models\Route;
+use common\models\User;
 use yii\web\NotFoundHttpException;
 
 class CabinetController extends \yii\web\Controller
@@ -20,7 +21,7 @@ class CabinetController extends \yii\web\Controller
             );
         }
 
-        parent::beforeAction($action);
+        return true;
     }
 
     /**
@@ -34,10 +35,13 @@ class CabinetController extends \yii\web\Controller
         $countRoute = Route::find()
             ->count();
 
+        $userId = \Yii::$app->user->id;
+        $user = User::findIdentity($userId);
+        \Yii::$app->view->params['username'] = $user->username;
+
         return $this->render('index', [
-            'countBus' => $countBus,
+            'countBus'   => $countBus,
             'countRoute' => $countRoute
         ]);
     }
-
 }
