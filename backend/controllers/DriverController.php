@@ -12,7 +12,7 @@ use yii\filters\VerbFilter;
 /**
  * DriverController implements the CRUD actions for Driver model.
  */
-class DriverController extends Controller
+class DriverController extends CustomController
 {
     public $layout = 'inner';
 

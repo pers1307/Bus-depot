@@ -12,7 +12,7 @@ use yii\filters\VerbFilter;
 /**
  * ReasonController implements the CRUD actions for Reason model.
  */
-class ReasonController extends Controller
+class ReasonController extends CustomController
 {
     public $layout = 'inner';
 

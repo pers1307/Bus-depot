@@ -13,7 +13,7 @@ use yii\filters\VerbFilter;
 /**
  * BusController implements the CRUD actions for Bus model.
  */
-class BusController extends Controller
+class BusController extends CustomController
 {
     public $layout = 'inner';
 

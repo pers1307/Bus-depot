@@ -13,7 +13,7 @@ use yii\filters\VerbFilter;
 /**
  * RouteController implements the CRUD actions for Route model.
  */
-class RouteController extends Controller
+class RouteController extends CustomController
 {
     public $layout = 'inner';
 
