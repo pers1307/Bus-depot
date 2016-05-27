@@ -26,7 +26,13 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'id_class',
-            'start_work_date',
+            [
+                'label' => 'Стаж водителя',
+                'format' => 'raw',
+                'value' => function($data){
+                    return date('Y') - \Yii::$app->formatter->asDate($data->start_work_date, 'yyyy');
+                }
+            ],
             'salary',
             'id_bus',
             'id_route',

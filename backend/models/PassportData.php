@@ -66,7 +66,7 @@ class PassportData extends \yii\db\ActiveRecord
             'when' => 'Дата выдачи',
             'series' => 'Серия',
             'number' => 'Номер',
-            'address' => 'Адрес',
+            'address' => 'Адрес прописки',
             'issued' => 'Кем выдан',
         ];
     }

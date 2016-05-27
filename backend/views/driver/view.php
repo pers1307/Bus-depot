@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model backend\models\Driver */
 
-$this->title = $model->id;
+$this->title = $passportData->name . ' ' . $passportData->patronymic . ' ' . $passportData->surname;
 $this->params['breadcrumbs'][] = ['label' => 'Drivers', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -28,13 +28,74 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
-            'id_class',
-            'start_work_date',
-            'salary',
-            'id_bus',
-            'id_route',
+            [
+                'label' => 'Имя',
+                'format' => 'raw',
+                'value' => $passportData->name
+            ],
+            [
+                'label' => 'Отчество',
+                'format' => 'raw',
+                'value' => $passportData->patronymic
+            ],
+            [
+                'label' => 'Фамилия',
+                'format' => 'raw',
+                'value' => $passportData->surname
+            ],
+            [
+                'label' => 'Дата рождения',
+                'format' => 'raw',
+                'value' => \Yii::$app->formatter->asDate($passportData->birth, 'php:d-m-Y')
+            ],
+            [
+                'label' => 'Серия паспорта',
+                'format' => 'raw',
+                'value' => $passportData->series
+            ],
+            [
+                'label' => 'Номер паспорта',
+                'format' => 'raw',
+                'value' => $passportData->number
+            ],
+            [
+                'label' => 'Адрес прописки',
+                'format' => 'raw',
+                'value' => $passportData->address
+            ],
+            [
+                'label' => 'Когда выдан',
+                'format' => 'raw',
+                'value' => \Yii::$app->formatter->asDate($passportData->when, 'php:d-m-Y')
+            ],
+            [
+                'label' => 'Кем выдан',
+                'format' => 'raw',
+                'value' => $passportData->issued
+            ],
+            [
+                'label' => 'Класс водителя',
+                'format' => 'raw',
+                'value' => $driverClass->name
+            ],
+            [
+                'label' => 'Стаж водителя',
+                'format' => 'raw',
+                'value' => date('Y') - \Yii::$app->formatter->asDate($model->start_work_date, 'yyyy')
+            ],
+            [
+                'label' => 'Автобус водителя',
+                'format' => 'raw',
+                'value' => $bus->number
+            ],
+            [
+                'label' => 'Номер маршрута',
+                'format' => 'raw',
+                'value' => $route->number
+            ],
         ],
     ]) ?>
+
+    <a href="/driver/">Назад</a>
 
 </div>

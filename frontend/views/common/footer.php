@@ -30,7 +30,7 @@
 
                 </ul>
                 <hr class="small">
-                <p class="text-muted">Copyright &copy; Перескоков Юрий Андреевич 2014 - <?= date('Y') ?></p>
+                <p class="text-muted">Copyright &copy; Перескоков Юрий Андреевич 2016 - <?= date('Y') ?></p>
             </div>
         </div>
     </div>

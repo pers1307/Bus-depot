@@ -54,8 +54,30 @@ class DriverController extends CustomController
      */
     public function actionView($id)
     {
+        $model = $this->findModel($id);
+
+        $driverClass = DriverClass::find()
+            ->where(['id' => $model->id_class])
+            ->one();
+
+        $bus = Bus::find()
+            ->where(['id' => $model->id_bus])
+            ->one();
+
+        $route = Route::find()
+            ->where(['id' => $model->id_route])
+            ->one();
+
+        $passportData = PassportData::find()
+            ->where(['id' => $model->id])
+            ->one();
+
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model'       => $model,
+            'driverClass' => $driverClass,
+            'bus'         => $bus,
+            'route'       => $route,
+            'passportData' => $passportData
         ]);
     }
 
@@ -99,11 +121,43 @@ class DriverController extends CustomController
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        $driverClass = DriverClass::find()
+            ->where(['id' => $model->id_class])
+            ->one();
+
+        $bus = Bus::find()
+            ->where(['id' => $model->id_bus])
+            ->one();
+
+        $route = Route::find()
+            ->where(['id' => $model->id_route])
+            ->one();
+
+        $passportData = PassportData::find()
+            ->where(['id' => $model->id])
+            ->one();
+
+        $passportDataInsert = new PassportData();
+
+        if (
+            $model->load(Yii::$app->request->post())
+            && $passportDataInsert->load(Yii::$app->request->post())
+        ) {
+            $passportDataInsert->id = $model->id;
+            $passportDataInsert->update();
+            $model->save();
+
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
-                'model' => $model,
+                'model'        => $model,
+                'driverClass'  => $driverClass,
+                'bus'          => $bus,
+                'route'        => $route,
+                'passportData' => $passportData,
+                'buses'         => $this->getAllBus(),
+                'routes'        => $this->getAllRoute(),
+                'driverClasses' => $this->getAllDriverClass(),
             ]);
         }
     }

@@ -22,4 +22,6 @@ $this->params['breadcrumbs'][] = $this->title;
         'passportData'  => $passportData
     ]) ?>
 
+    <a href="/driver/">Назад</a>
+
 </div>
