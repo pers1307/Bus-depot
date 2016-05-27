@@ -14,7 +14,7 @@
         <div class="col-lg-3 col-xs-6">
             <div class="small-box bg-light-blue">
                 <div class="inner">
-                    <h3>35</h3>
+                    <h3><?= $countDrivers ?></h3>
                     <p>Количество водителей</p>
                 </div>
                 <div class="icon">
@@ -38,7 +38,7 @@
         <div class="col-lg-3 col-xs-6">
             <div class="small-box bg-red-gradient">
                 <div class="inner">
-                    <h3>35</h3>
+                    <h3><?= $countFlight ?></h3>
                     <p>Количество рейсов</p>
                 </div>
                 <div class="icon">

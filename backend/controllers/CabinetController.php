@@ -3,6 +3,8 @@
 namespace backend\controllers;
 
 use backend\models\Bus;
+use backend\models\Driver;
+use backend\models\Flight;
 use backend\models\Route;
 
 class CabinetController extends CustomController
@@ -18,9 +20,17 @@ class CabinetController extends CustomController
         $countRoute = Route::find()
             ->count();
 
+        $countDrivers = Driver::find()
+            ->count();
+
+        $countFlight = Flight::find()
+            ->count();
+
         return $this->render('index', [
             'countBus'   => $countBus,
-            'countRoute' => $countRoute
+            'countRoute' => $countRoute,
+            'countDrivers' => $countDrivers,
+            'countFlight' => $countFlight,
         ]);
     }
 }

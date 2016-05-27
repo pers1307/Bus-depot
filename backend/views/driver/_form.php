@@ -48,36 +48,39 @@ use yii\widgets\ActiveForm;
     ?>
 
     <?=
-    $form->field($model, 'id_class')->widget(\kartik\select2\Select2::classname(), [
-        'data' => $driverClasses,
-        'options' => ['placeholder' => ''],
-        'pluginOptions' => [
-            'allowClear' => true
-        ],
-    ])
+    $form
+        ->field($model, 'id_class')->widget(\kartik\select2\Select2::classname(), [
+            'data' => $driverClasses,
+            'options' => ['placeholder' => ''],
+            'pluginOptions' => [
+                'allowClear' => true
+            ],
+        ])
         ->label('Класс водителя');
     ?>
 
     <?=
-    $form->field($model, 'id_bus')->widget(\kartik\select2\Select2::classname(), [
-        'data' => $buses,
-        'options' => ['placeholder' => ''],
-        'pluginOptions' => [
-            'allowClear' => true
-        ],
-    ])
+    $form
+        ->field($model, 'id_bus')->widget(\kartik\select2\Select2::classname(), [
+            'data' => $buses,
+            'options' => ['placeholder' => ''],
+            'pluginOptions' => [
+                'allowClear' => true
+            ],
+        ])
         ->label('Автобус');
     ?>
 
     <?=
-    $form->field($model, 'id_route')->widget(\kartik\select2\Select2::classname(), [
-        'data' => $routes,
-        'options' => ['placeholder' => ''],
-        'pluginOptions' => [
-            'allowClear' => true
-        ],
-    ])
-    ->label('Маршрут');
+    $form
+        ->field($model, 'id_route')->widget(\kartik\select2\Select2::classname(), [
+            'data' => $routes,
+            'options' => ['placeholder' => ''],
+            'pluginOptions' => [
+                'allowClear' => true
+            ],
+        ])
+        ->label('Маршрут');
     ?>
 
     <div class="form-group">
