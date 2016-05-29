@@ -47,13 +47,23 @@ class Route extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'Идентификатор',
-            'number' => 'Номер',
+            'id'               => 'Идентификатор',
+            'number'           => 'Номер',
             'start_id_station' => 'Начальная станция',
-            'end_id_station' => 'Конечная станция',
-            'interval' => 'Интервал движения в минутах',
-            'duration' => 'Длительность в минутах',
+            'end_id_station'   => 'Конечная станция',
+            'interval'         => 'Интервал движения в минутах',
+            'duration'         => 'Длительность в минутах',
+            'startStationName' => 'Начальная станция',
+            'endStationName'   => 'Конечная станция',
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getStartIdStation()
+    {
+        return $this->hasOne(Station::className(), ['id' => 'start_id_station']);
     }
 
     /**
@@ -65,10 +75,18 @@ class Route extends \yii\db\ActiveRecord
     }
 
     /**
-     * @return \yii\db\ActiveQuery
+     * @return string
      */
-    public function getStartIdStation()
+    public function getStartStationName()
     {
-        return $this->hasOne(Station::className(), ['id' => 'start_id_station']);
+        return $this->startIdStation->name;
+    }
+
+    /**
+     * @return string
+     */
+    public function getEndStationName()
+    {
+        return $this->endIdStation->name;
     }
 }

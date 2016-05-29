@@ -13,13 +13,18 @@ use backend\models\Bus;
 class BusSearch extends Bus
 {
     /**
+     * @var string
+     */
+    public $typeName;
+
+    /**
      * @inheritdoc
      */
     public function rules()
     {
         return [
             [['id', 'id_type'], 'integer'],
-            [['number'], 'safe'],
+            [['number', 'typeName'], 'safe'],
         ];
     }
 
@@ -49,11 +54,24 @@ class BusSearch extends Bus
             'query' => $query,
         ]);
 
+        $dataProvider->setSort([
+            'attributes' => [
+                'typeName' => [
+                    'asc' => ['bus_type.name' => SORT_ASC],
+                    'desc' => ['bus_type.name' => SORT_DESC],
+                    'label' => 'Тип автобуса'
+                ]
+            ]
+        ]);
+
         $this->load($params);
 
         if (!$this->validate()) {
             // uncomment the following line if you do not want to return any records when validation fails
             // $query->where('0=1');
+
+            $query->joinWith(['idType']);
+
             return $dataProvider;
         }
 
@@ -64,6 +82,10 @@ class BusSearch extends Bus
         ]);
 
         $query->andFilterWhere(['like', 'number', $this->number]);
+
+        $query->joinWith(['idType' => function ($q) {
+            $q->where('bus_type.name LIKE "%' . $this->typeName . '%"');
+        }]);
 
         return $dataProvider;
     }

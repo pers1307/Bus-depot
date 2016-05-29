@@ -13,13 +13,23 @@ use backend\models\Route;
 class RouteSearch extends Route
 {
     /**
+     * @var string
+     */
+    public $startStationName;
+
+    /**
+     * @var string
+     */
+    public $endStationName;
+
+    /**
      * @inheritdoc
      */
     public function rules()
     {
         return [
             [['id', 'start_id_station', 'end_id_station'], 'integer'],
-            [['number'], 'safe'],
+            [['number', 'startStationName', 'endStationName', 'interval', 'duration'], 'safe'],
             [['interval', 'duration'], 'number'],
         ];
     }
@@ -50,11 +60,41 @@ class RouteSearch extends Route
             'query' => $query,
         ]);
 
+        $dataProvider->setSort([
+            'attributes' => [
+                'startStationName' => [
+                    'asc' => ['ss.name' => SORT_ASC],
+                    'desc' => ['ss.name' => SORT_DESC],
+                    'label' => 'Станция отправки'
+                ],
+                'endStationName' => [
+                    'asc' => ['es.name' => SORT_ASC],
+                    'desc' => ['es.name' => SORT_DESC],
+                    'label' => 'Станция прибытия'
+                ],
+                'number' => [
+                    'asc' => ['number' => SORT_ASC],
+                    'desc' => ['number' => SORT_DESC],
+                ],
+                'interval' => [
+                    'asc' => ['interval' => SORT_ASC],
+                    'desc' => ['interval' => SORT_DESC],
+                ],
+                'duration' => [
+                    'asc' => ['duration' => SORT_ASC],
+                    'desc' => ['duration' => SORT_DESC],
+                ],
+            ]
+        ]);
+
         $this->load($params);
 
         if (!$this->validate()) {
             // uncomment the following line if you do not want to return any records when validation fails
             // $query->where('0=1');
+            $query->joinWith(['startIdStation ss']);
+            $query->joinWith(['endIdStation es']);
+
             return $dataProvider;
         }
 
@@ -68,6 +108,14 @@ class RouteSearch extends Route
         ]);
 
         $query->andFilterWhere(['like', 'number', $this->number]);
+
+        $query->joinWith(['startIdStation ss' => function ($q) {
+            $q->where('ss.name LIKE "%' . $this->startStationName . '%"');
+        }]);
+
+        $query->joinWith(['endIdStation es' => function ($q) {
+            $q->where('es.name LIKE "%' . $this->endStationName . '%"');
+        }]);
 
         return $dataProvider;
     }

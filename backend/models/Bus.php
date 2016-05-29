@@ -41,9 +41,10 @@ class Bus extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'Идентификатор',
-            'number' => 'Номер',
-            'id_type' => 'Тип автобуса',
+            'id'       => 'Идентификатор',
+            'number'   => 'Номер',
+            'id_type'  => 'Тип автобуса Идентификатор',
+            'typeName' => 'Тип автобуса',
         ];
     }
 
@@ -53,5 +54,10 @@ class Bus extends \yii\db\ActiveRecord
     public function getIdType()
     {
         return $this->hasOne(BusType::className(), ['id' => 'id_type']);
+    }
+
+    public function getTypeName()
+    {
+        return $this->idType->name;
     }
 }

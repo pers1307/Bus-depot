@@ -25,8 +25,10 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
             'number',
-            'start_id_station',
-            'end_id_station',
+            'startStationName',
+            'endStationName',
+            //'start_id_station',
+            //'end_id_station',
             'interval',
             'duration',
             ['class' => 'yii\grid\ActionColumn'],
