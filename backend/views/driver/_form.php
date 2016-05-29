@@ -21,14 +21,14 @@ use yii\widgets\ActiveForm;
     <?=
     $form
         ->field($passportData, 'birth')
-        ->widget(\kartik\date\DatePicker::className(), [
+        ->widget(\kartik\datetime\DateTimePicker::className(), [
         ])
     ?>
 
     <?=
     $form
         ->field($passportData, 'when')
-        ->widget(\kartik\date\DatePicker::className(), [
+        ->widget(\kartik\datetime\DateTimePicker::className(), [
         ])
     ?>
 
@@ -45,7 +45,7 @@ use yii\widgets\ActiveForm;
     <?=
         $form
             ->field($model, 'start_work_date')
-            ->widget(\kartik\date\DatePicker::className(), [
+            ->widget(\kartik\datetime\DateTimePicker::className(), [
             ])
             ->label('Дата начала работы');
     ?>

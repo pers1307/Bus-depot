@@ -27,8 +27,6 @@ $this->params['breadcrumbs'][] = $this->title;
             'number',
             'startStationName',
             'endStationName',
-            //'start_id_station',
-            //'end_id_station',
             'interval',
             'duration',
             ['class' => 'yii\grid\ActionColumn'],

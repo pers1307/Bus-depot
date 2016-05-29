@@ -2,15 +2,15 @@
 Navicat MySQL Data Transfer
 
 Source Server         : localhost
-Source Server Version : 50538
+Source Server Version : 50548
 Source Host           : localhost:3306
 Source Database       : bus
 
 Target Server Type    : MYSQL
-Target Server Version : 50538
+Target Server Version : 50548
 File Encoding         : 65001
 
-Date: 2016-05-27 17:52:07
+Date: 2016-05-29 23:56:17
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -62,7 +62,7 @@ CREATE TABLE `bus_type` (
 -- Records of bus_type
 -- ----------------------------
 INSERT INTO `bus_type` VALUES ('2', 'Особо малый', '10');
-INSERT INTO `bus_type` VALUES ('3', 'Малые', '40');
+INSERT INTO `bus_type` VALUES ('3', 'Малый', '40');
 INSERT INTO `bus_type` VALUES ('4', 'Средний', '65');
 INSERT INTO `bus_type` VALUES ('5', 'Большой', '110');
 INSERT INTO `bus_type` VALUES ('6', 'Особо большой', '150');
@@ -107,13 +107,13 @@ CREATE TABLE `driver` (
 INSERT INTO `driver` VALUES ('3', '2', '2010-06-20 00:00:00', '0', '1', '1');
 INSERT INTO `driver` VALUES ('4', '2', '2005-02-20 00:00:00', '10', '14', '10');
 INSERT INTO `driver` VALUES ('5', '3', '2001-03-20 00:00:00', '90000', '13', '14');
-INSERT INTO `driver` VALUES ('6', '2', '0000-00-00 00:00:00', '35000', '10', '10');
-INSERT INTO `driver` VALUES ('7', '3', '0000-00-00 00:00:00', '100000', '12', '17');
-INSERT INTO `driver` VALUES ('8', '2', '0000-00-00 00:00:00', '90000', '2', '12');
+INSERT INTO `driver` VALUES ('6', '2', '2013-05-13 12:45:00', '35000', '10', '10');
+INSERT INTO `driver` VALUES ('7', '3', '2015-02-03 05:25:00', '100000', '12', '17');
+INSERT INTO `driver` VALUES ('8', '2', '2011-03-31 18:50:00', '90000', '2', '12');
 INSERT INTO `driver` VALUES ('9', '3', '2011-04-20 00:00:00', '33000', '7', '7');
-INSERT INTO `driver` VALUES ('10', '2', '0000-00-00 00:00:00', '10800', '10', '9');
+INSERT INTO `driver` VALUES ('10', '2', '2010-03-03 18:50:00', '10800', '10', '9');
 INSERT INTO `driver` VALUES ('11', '2', '2010-03-20 00:00:00', '99', '8', '8');
-INSERT INTO `driver` VALUES ('12', '2', '2009-01-20 00:00:00', '23000', '15', '3');
+INSERT INTO `driver` VALUES ('12', '2', '2009-01-20 00:00:00', '23000', null, null);
 
 -- ----------------------------
 -- Table structure for flight
@@ -167,19 +167,19 @@ CREATE TABLE `passport_data` (
   `address` text,
   `issued` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of passport_data
 -- ----------------------------
 INSERT INTO `passport_data` VALUES ('3', 'Иван', '', 'Оловянников', '1894-06-02 00:00:00', '2012-06-20 00:00:00', '4444', '963222', 'Новгород', 'УМВД');
-INSERT INTO `passport_data` VALUES ('4', 'Николай', 'Матвеевич', 'Куницын', '1982-04-14 00:00:00', '2007-01-20 00:00:00', '363', '789563', 'Екатеринбург', 'Мной');
-INSERT INTO `passport_data` VALUES ('5', 'Александр', 'Андреевич', 'Бунин', '0000-00-00 00:00:00', '2005-01-20 00:00:00', '789', '444666', 'Москва', 'Мосвой и выдан');
-INSERT INTO `passport_data` VALUES ('6', 'Владимир', '', 'Кузнецов', '0000-00-00 00:00:00', '2005-01-20 00:00:00', '999', '799222', 'Барнаул', 'УМВД');
-INSERT INTO `passport_data` VALUES ('7', 'Петр', 'Федорович', 'Патров', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '5', '5', '6', '6666');
-INSERT INTO `passport_data` VALUES ('8', 'Евгений', 'Мартынович', 'Марин', '0000-00-00 00:00:00', '2020-06-20 00:00:00', '12', '12', '12', '1212');
-INSERT INTO `passport_data` VALUES ('9', 'Валентин', '', 'Печалин', '0000-00-00 00:00:00', '2004-03-20 00:00:00', '33', '33', '33', '33');
-INSERT INTO `passport_data` VALUES ('10', 'Константин', 'Николаевич', 'Никитин', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '44', '44', '66', '777');
+INSERT INTO `passport_data` VALUES ('4', 'Николай', 'Матвеевич', 'Куницын', '1980-02-12 05:25:00', '2001-01-08 08:40:00', '363', '789563', 'Екатеринбург', 'Мной');
+INSERT INTO `passport_data` VALUES ('5', 'Александр', 'Андреевич', 'Бунин', '1971-03-11 10:50:00', '2005-01-20 00:00:00', '789', '444666', 'Москва', 'Мосвой и выдан');
+INSERT INTO `passport_data` VALUES ('6', 'Владимир', '', 'Кузнецов', '1960-12-23 19:55:00', '2005-01-20 00:00:00', '999', '799222', 'Барнаул', 'УМВД');
+INSERT INTO `passport_data` VALUES ('7', 'Петр', 'Федорович', 'Патров', '1971-03-11 10:50:00', '2009-11-19 18:50:00', '5', '5', '6', '6666');
+INSERT INTO `passport_data` VALUES ('8', 'Евгений', 'Мартынович', 'Марин', '1971-03-11 10:50:00', '2000-03-01 18:50:00', '12', '12', '12', '1212');
+INSERT INTO `passport_data` VALUES ('9', 'Валентин', '', 'Печалин', '1971-03-11 10:50:00', '2004-03-20 00:00:00', '33', '33', '33', '33');
+INSERT INTO `passport_data` VALUES ('10', 'Константин', 'Николаевич', 'Никитин', '1971-03-11 10:50:00', '1991-02-28 18:50:00', '44', '44', '66', '777');
 INSERT INTO `passport_data` VALUES ('11', 'Егор', '', 'Валишев', '2007-01-20 00:00:00', '2013-01-20 00:00:00', '90', '99', '99', '99');
 INSERT INTO `passport_data` VALUES ('12', 'Михаил', '', 'Видов', '2008-07-20 00:00:00', '2005-05-20 00:00:00', '52', '555', '555', '5555');
 

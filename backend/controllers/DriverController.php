@@ -42,8 +42,9 @@ class DriverController extends CustomController
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
+            'searchModel'      => $searchModel,
+            'dataProvider'     => $dataProvider,
+            'experienceFilter' => $this->getExperienceFilter()
         ]);
     }
 
@@ -120,6 +121,7 @@ class DriverController extends CustomController
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $passportDataInsert = PassportData::findOne($id);
 
         $driverClass = DriverClass::find()
             ->where(['id' => $model->id_class])
@@ -137,24 +139,21 @@ class DriverController extends CustomController
             ->where(['id' => $model->id])
             ->one();
 
-        $passportDataInsert = new PassportData();
-
         if (
             $model->load(Yii::$app->request->post())
             && $passportDataInsert->load(Yii::$app->request->post())
         ) {
-            $passportDataInsert->id = $model->id;
             $passportDataInsert->update();
             $model->save();
 
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
-                'model'        => $model,
-                'driverClass'  => $driverClass,
-                'bus'          => $bus,
-                'route'        => $route,
-                'passportData' => $passportData,
+                'model'         => $model,
+                'driverClass'   => $driverClass,
+                'bus'           => $bus,
+                'route'         => $route,
+                'passportData'  => $passportData,
                 'buses'         => $this->getAllBus(),
                 'routes'        => $this->getAllRoute(),
                 'driverClasses' => $this->getAllDriverClass(),
@@ -237,5 +236,20 @@ class DriverController extends CustomController
         }
 
         return $driverClassesArray;
+    }
+
+    protected function getExperienceFilter()
+    {
+        $drivers = Driver::find()->all();
+
+        $experienceFilter = [];
+
+        foreach ($drivers as $driver) {
+            $experienceFilter[$driver->start_work_date] = date('Y') - \Yii::$app->formatter->asDate($driver->start_work_date, 'yyyy');
+        }
+
+        asort($experienceFilter);
+
+        return $experienceFilter;
     }
 }

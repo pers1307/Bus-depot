@@ -19,24 +19,24 @@ $this->params['breadcrumbs'][] = $this->title;
     <p>
         <?= Html::a('Добавить водителя', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
+
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
-            'id_class',
+            'name',
+            'surname',
+            'driverClass',
             [
-                'label' => 'Стаж водителя',
-                'format' => 'raw',
-                'value' => function($data){
-                    return date('Y') - \Yii::$app->formatter->asDate($data->start_work_date, 'yyyy');
-                }
+                'attribute' => 'experience',
+                'filter'    => $experienceFilter
             ],
-            'salary',
             'id_bus',
             'id_route',
-
+            //'bus.number',
+            //'busNumber',
+            //'routeNumber',
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
