@@ -32,8 +32,10 @@ class Flight extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['start_date', 'end_date', 'id_driver'], 'required'],
             [['start_date', 'end_date'], 'safe'],
-            [['id_driver', 'wrong', 'id_reason'], 'integer'],
+            //['end_date', 'compare', 'compareValue' => 'start_date', 'operator' => '>='],
+            [['id_driver', 'id_reason'], 'integer'],
             [['id_driver'], 'exist', 'skipOnError' => true, 'targetClass' => Driver::className(), 'targetAttribute' => ['id_driver' => 'id']],
         ];
     }
@@ -45,11 +47,11 @@ class Flight extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'start_date' => 'Start Date',
-            'end_date' => 'End Date',
-            'id_driver' => 'Id Driver',
-            'wrong' => 'Wrong',
-            'id_reason' => 'Id Reason',
+            'start_date' => 'Дата и время отправки',
+            'end_date' => 'Дата и время прибытия',
+            'id_driver' => 'Водитель',
+            'wrong' => 'Отменить рейс',
+            'id_reason' => 'Причина отмены',
         ];
     }
 

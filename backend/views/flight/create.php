@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model backend\models\Flight */
 
-$this->title = 'Create Flight';
+$this->title = 'Добавить рейс';
 $this->params['breadcrumbs'][] = ['label' => 'Flights', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -15,7 +15,9 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <?= $this->render('_form', [
-        'model' => $model,
+        'model'   => $model,
+        'drivers' => $drivers,
+        'reasons' => $reasons
     ]) ?>
 
 </div>

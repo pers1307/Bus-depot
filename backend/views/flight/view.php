@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model backend\models\Flight */
 
-$this->title = $model->id;
+$this->title = $model->start_date . ' : ' . $route->number;
 $this->params['breadcrumbs'][] = ['label' => 'Flights', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -15,11 +15,11 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
+        <?= Html::a('Обновить', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Удалить', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
+                'confirm' => 'Вы уверены, что хотите удалить данный рейс?',
                 'method' => 'post',
             ],
         ]) ?>
@@ -28,12 +28,31 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
             'start_date',
             'end_date',
-            'id_driver',
+            [
+                'label'  => 'Водитель',
+                'format' => 'raw',
+                'value'  => $passportData->name . ' ' . $passportData->surname
+            ],
+            [
+                'label'  => 'Водитель',
+                'format' => 'raw',
+                'value'  => $route->number
+            ],
+            [
+                'label'  => 'Отмена',
+                'format' => 'raw',
+                'value'  => function($data) {
+
+                }
+            ],
             'wrong',
-            'id_reason',
+            [
+                'label'  => 'Причина отмены',
+                'format' => 'raw',
+                'value'  => $reason->name
+            ],
         ],
     ]) ?>
 

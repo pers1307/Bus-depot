@@ -12,18 +12,50 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'start_date')->textInput() ?>
+    <?=
+    $form
+        ->field($model, 'start_date')
+        ->widget(\kartik\datetime\DateTimePicker::className(), [
+        ])
+    ?>
 
-    <?= $form->field($model, 'end_date')->textInput() ?>
+    <?=
+    $form
+        ->field($model, 'end_date')
+        ->widget(\kartik\datetime\DateTimePicker::className(), [
+        ])
+    ?>
 
-    <?= $form->field($model, 'id_driver')->textInput(['maxlength' => true]) ?>
+    <?=
+    $form
+        ->field($model, 'id_driver')->widget(\kartik\select2\Select2::classname(), [
+            'data' => $drivers,
+            'options' => ['placeholder' => ''],
+            'pluginOptions' => [
+                'allowClear' => true
+            ],
+        ])
+        ->label('Водитель');
+    ?>
 
-    <?= $form->field($model, 'wrong')->textInput() ?>
+<!--    Здесь подтыкать информацию о водителе-->
 
-    <?= $form->field($model, 'id_reason')->textInput() ?>
+    <?= $form->field($model, 'wrong')->checkbox() ?>
+
+    <?=
+    $form
+        ->field($model, 'id_reason')->widget(\kartik\select2\Select2::classname(), [
+            'data' => $reasons,
+            'options' => ['placeholder' => ''],
+            'pluginOptions' => [
+                'allowClear' => true
+            ],
+        ])
+        ->label('Причина отмены');
+    ?>
 
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::submitButton($model->isNewRecord ? 'Добавить' : 'Обновить', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

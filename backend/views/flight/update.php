@@ -5,10 +5,10 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model backend\models\Flight */
 
-$this->title = 'Update Flight: ' . $model->id;
+$this->title = 'Обновить рейс: ' . $model->id;
 $this->params['breadcrumbs'][] = ['label' => 'Flights', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->params['breadcrumbs'][] = 'Обновить';
 ?>
 <div class="flight-update">
 
@@ -16,6 +16,8 @@ $this->params['breadcrumbs'][] = 'Update';
 
     <?= $this->render('_form', [
         'model' => $model,
+        'drivers' => $drivers,
+        'reasons' => $reasons
     ]) ?>
 
 </div>

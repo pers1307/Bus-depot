@@ -2,6 +2,11 @@
 
 namespace backend\controllers;
 
+use backend\models\Bus;
+use backend\models\Driver;
+use backend\models\PassportData;
+use backend\models\Reason;
+use backend\models\Route;
 use Yii;
 use backend\models\Flight;
 use backend\models\FlightSearch;
@@ -51,8 +56,34 @@ class FlightController extends CustomController
      */
     public function actionView($id)
     {
+        $model = $this->findModel($id);
+
+        $passportData = PassportData::find()
+            ->where(['id' => $model->id_driver])
+            ->one();
+
+        $reason = Reason::find()
+            ->where(['id' => $model->id_reason])
+            ->one();
+
+        $driver = Driver::find()
+            ->where(['id' => $model->id_driver])
+            ->one();
+
+        $bus = Bus::find()
+            ->where(['id' => $driver->id_bus])
+            ->one();
+
+        $route = Route::find()
+            ->where(['id' => $driver->id_route])
+            ->one();
+
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model'        => $model,
+            'passportData' => $passportData,
+            'reason'       => $reason,
+            'bus'          => $bus,
+            'route'        => $route
         ]);
     }
 
@@ -69,7 +100,9 @@ class FlightController extends CustomController
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
-                'model' => $model,
+                'model'   => $model,
+                'drivers' => $this->getAllDriver(),
+                'reasons' => $this->getAllReason()
             ]);
         }
     }
@@ -89,6 +122,8 @@ class FlightController extends CustomController
         } else {
             return $this->render('update', [
                 'model' => $model,
+                'drivers' => $this->getAllDriver(),
+                'reasons' => $this->getAllReason()
             ]);
         }
     }
@@ -120,5 +155,35 @@ class FlightController extends CustomController
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
+    }
+
+    /**
+     * @return array
+     */
+    protected function getAllDriver()
+    {
+        $drivers = Driver::find()->with('passportData')->all();
+        $driversArray = [];
+
+        foreach ($drivers as $driver) {
+            $driversArray[$driver->id] = $driver->name . ' ' . $driver->surname;
+        }
+
+        return $driversArray;
+    }
+
+    /**
+     * @return array
+     */
+    protected function getAllReason()
+    {
+        $reasons = Reason::find()->all();
+        $reasonsArray = [];
+
+        foreach ($reasons as $reason) {
+            $reasonsArray[$reason->id] = $reason->name;
+        }
+
+        return $reasonsArray;
     }
 }
