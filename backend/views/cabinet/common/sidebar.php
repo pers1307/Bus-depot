@@ -195,7 +195,7 @@
                 </li>
             <? endif; ?>
 
-            <? if (strpos($_SERVER['REQUEST_URI'], '!') || strpos($_SERVER['REQUEST_URI'], 'reason/')): ?>
+            <? if (strpos($_SERVER['REQUEST_URI'], 'flight/') || strpos($_SERVER['REQUEST_URI'], 'reason/')): ?>
                 <li class="treeview active">
 
                     <a href="#">
@@ -205,13 +205,13 @@
                     </a>
                     <ul class="treeview-menu menu-open">
                         <li>
-                            <? if (strpos($_SERVER['REQUEST_URI'], '!')): ?>
+                            <? if (strpos($_SERVER['REQUEST_URI'], 'flight/')): ?>
                                 <a class="text-aqua">
-                                    <i class="fa fa-calendar-plus-o"></i> Добавить рейс
+                                    <i class="fa fa-calendar"></i> Рейсы
                                 </a>
                             <? else: ?>
-                                <a href="">
-                                    <i class="fa fa-calendar-plus-o"></i> Добавить рейс
+                                <a href="/flight/">
+                                    <i class="fa fa-calendar"></i> Рейсы
                                 </a>
                             <? endif; ?>
                         </li>
@@ -237,8 +237,8 @@
                     </a>
                     <ul class="treeview-menu">
                         <li>
-                            <a href="">
-                                <i class="fa fa-calendar-plus-o"></i> Добавить рейс
+                            <a href="/flight/">
+                                <i class="fa fa-calendar"></i> Рейсы
                             </a>
                         </li>
                         <li>

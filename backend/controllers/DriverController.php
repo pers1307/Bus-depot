@@ -238,6 +238,9 @@ class DriverController extends CustomController
         return $driverClassesArray;
     }
 
+    /**
+     * @return array
+     */
     protected function getExperienceFilter()
     {
         $drivers = Driver::find()->all();
