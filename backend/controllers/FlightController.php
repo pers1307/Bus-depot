@@ -4,6 +4,7 @@ namespace backend\controllers;
 
 use backend\models\Bus;
 use backend\models\Driver;
+use backend\models\FlightGenerateForm;
 use backend\models\PassportData;
 use backend\models\Reason;
 use backend\models\Route;
@@ -114,17 +115,83 @@ class FlightController extends CustomController
      */
     public function actionGenerate()
     {
-        $model = new Flight();
+        $form = new FlightGenerateForm();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('create', [
-                'model'   => $model,
-                'drivers' => $this->getAllDriver(),
-                'reasons' => $this->getAllReason()
-            ]);
+        $result = '';
+
+        if ($form->load(\Yii::$app->request->post()) && $form->validate()) {
+
+            $driver = Driver::find()
+                ->where(['id' => $form->idDriver])
+                ->one();
+
+            if (!is_null($driver)) {
+                $route = Route::find()
+                    ->where(['id' => $driver->id_route])
+                    ->one();
+
+                if (!is_null($route)) {
+                    $interval = $route->interval;
+                    $duration = $route->duration;
+
+                    $dateStart = new \DateTime($form->startDate);
+                    $dateEnd   = new \DateTime($form->endDate);
+
+                    $resultCompare = 0;
+
+                    do {
+                        $endTimeFlight = clone $dateStart;
+                        $endTimeFlight->add(new \DateInterval('PT' . $interval . 'M'));
+                        //$endTimeFlight = $dateStart->format('d-m-Y H:i');
+
+                        $resultCompare = $endTimeFlight->diff($dateEnd);
+                        $resultCompare = $resultCompare->format('%i%');
+
+                        if ($resultCompare > 0) {
+                            $newFlight = new Flight();
+
+                            $format = $dateStart->format('Y-m-d H:i:s');
+                            $newFlight->start_date = $format;
+
+                            $format = $endTimeFlight->format('Y-m-d H:i:s');
+                            $newFlight->end_date = $format;
+
+                            $newFlight->id_driver = $form->idDriver;
+                            $newFlight->wrong = 0;
+                            $newFlight->id_reason = 0;
+                            $newFlight->save();
+                        } else {
+                            break;
+                        }
+
+                        // Добавить к дате интервал движения, если он удовлетворяет условиям,
+                        // то перезначаем условия и уходим на следующий круг
+                        $endTimeInterval = clone $dateStart;
+                        $endTimeInterval->add(new \DateInterval('PT' . $duration . 'M'));
+                        $resultCompare = $endTimeFlight->diff($dateEnd);
+                        $resultCompare = $resultCompare->format('%i%');
+
+                        if ($resultCompare > 0) {
+                            $dateStart = $endTimeInterval;
+                        } else {
+                            break;
+                        }
+                    } while ($resultCompare > 0);
+
+                    $result = 'Рейсы успешно сгенерированы';
+                } else {
+                    $result = 'К водителю не прикреплен маршрут';
+                }
+            } else {
+                $result = 'Такого водителя не существует';
+            }
         }
+
+        return $this->render('generate', [
+            'generateForm' => $form,
+            'drivers'      => $this->getAllDriver(),
+            'result'       => $result
+        ]);
     }
 
     /**

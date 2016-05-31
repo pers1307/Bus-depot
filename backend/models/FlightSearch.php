@@ -44,8 +44,6 @@ class FlightSearch extends Flight
         $query = Flight::find()
             ->orderBy('start_date DESC');
 
-        // add conditions that should always apply here
-
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
