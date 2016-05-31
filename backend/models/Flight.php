@@ -33,7 +33,7 @@ class Flight extends \yii\db\ActiveRecord
     {
         return [
             [['start_date', 'end_date', 'id_driver'], 'required'],
-            [['start_date', 'end_date'], 'safe'],
+            [['start_date', 'end_date', 'wrong', 'id_driver', 'id_reason'], 'safe'],
             //['end_date', 'compare', 'compareValue' => 'start_date', 'operator' => '>='],
             [['id_driver', 'id_reason'], 'integer'],
             [['id_driver'], 'exist', 'skipOnError' => true, 'targetClass' => Driver::className(), 'targetAttribute' => ['id_driver' => 'id']],
@@ -46,12 +46,12 @@ class Flight extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
+            'id'         => 'ID',
             'start_date' => 'Дата и время отправки',
-            'end_date' => 'Дата и время прибытия',
-            'id_driver' => 'Водитель',
-            'wrong' => 'Отменить рейс',
-            'id_reason' => 'Причина отмены',
+            'end_date'   => 'Дата и время прибытия',
+            'id_driver'  => 'Водитель',
+            'wrong'      => 'Отменить рейс',
+            'id_reason'  => 'Причина отмены',
         ];
     }
 

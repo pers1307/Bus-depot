@@ -20,4 +20,5 @@ $this->params['breadcrumbs'][] = $this->title;
         'reasons' => $reasons
     ]) ?>
 
+    <a href="/flight/">Назад</a>
 </div>

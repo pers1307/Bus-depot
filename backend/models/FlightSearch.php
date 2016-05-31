@@ -41,7 +41,8 @@ class FlightSearch extends Flight
      */
     public function search($params)
     {
-        $query = Flight::find();
+        $query = Flight::find()
+            ->orderBy('start_date DESC');
 
         // add conditions that should always apply here
 
@@ -59,12 +60,12 @@ class FlightSearch extends Flight
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'id' => $this->id,
+            'id'         => $this->id,
             'start_date' => $this->start_date,
-            'end_date' => $this->end_date,
-            'id_driver' => $this->id_driver,
-            'wrong' => $this->wrong,
-            'id_reason' => $this->id_reason,
+            'end_date'   => $this->end_date,
+            'id_driver'  => $this->id_driver,
+            'wrong'      => $this->wrong,
+            'id_reason'  => $this->id_reason,
         ]);
 
         return $dataProvider;

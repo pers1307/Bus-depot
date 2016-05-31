@@ -44,7 +44,7 @@ class FlightController extends CustomController
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
-            'searchModel' => $searchModel,
+            'searchModel'  => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
     }
@@ -93,6 +93,26 @@ class FlightController extends CustomController
      * @return mixed
      */
     public function actionCreate()
+    {
+        $model = new Flight();
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->id]);
+        } else {
+            return $this->render('create', [
+                'model'   => $model,
+                'drivers' => $this->getAllDriver(),
+                'reasons' => $this->getAllReason()
+            ]);
+        }
+    }
+
+    /**
+     * Generate flights
+     *
+     * @return mixed
+     */
+    public function actionGenerate()
     {
         $model = new Flight();
 

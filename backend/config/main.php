@@ -41,6 +41,7 @@ return [
             'dateFormat' => 'php:d.m.Y',
             'datetimeFormat' => 'php:d.m.Y H:i:s',
             'timeFormat' => 'php:H:i:s',
+            'timeZone' => 'UTC+7'
         ]
     ],
     'params' => $params,
