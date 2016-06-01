@@ -50,7 +50,6 @@
 
 <div class="row">
     <section class="col-lg-12">
-
         <table class="table table-hover">
             <h2>Расписание</h2>
 
@@ -68,74 +67,38 @@
             </thead>
 
             <tbody>
-                <tr class="row-flight success">
-                    <th>1</th>
-                    <th>С096</th>
-                    <th>25/02/2016</th>
-                    <th>Чкаловская</th>
-                    <th>26/03/2016</th>
-                    <th>Проселочная</th>
-                    <th>Г-100</th>
-                    <th>66</th>
-                </tr>
+                <? foreach($timeTable as $key => $item): ?>
+                    <?
+                    $trClass = '';
 
-                <tr class="info row-flight">
-                    <th>2</th>
-                    <th>С096</th>
-                    <th>25/02/2016</th>
-                    <th>Чкаловская</th>
-                    <th>26/03/2016</th>
-                    <th>Проселочная</th>
-                    <th>Г-100</th>
-                    <th>66</th>
-                </tr>
+                    if ((int)$item['wrong'] === 1) {
+                        $trClass = 'danger cancel-flight row-flight red';
+                    } elseif ((int)$item['active'] === 1) {
+                        $trClass = 'row-flight success';
+                    } elseif (($key + 1) % 2 === 0) {
+                        $trClass = 'info row-flight';
+                    } else {
+                        $trClass = 'row-flight';
+                    }
+                    ?>
 
-                <tr class="danger cancel-flight row-flight red">
-                    <th><i class="fa fa-ban" aria-hidden="true"></i></th>
-                    <th>С096</th>
-                    <th>25/02/2016</th>
-                    <th>Чкаловская</th>
-                    <th>26/03/2016</th>
-                    <th>Проселочная</th>
-                    <th>Г-100</th>
-                    <th>66</th>
-                </tr>
+                    <tr class="<?= $trClass ?>">
+                        <? if ((int)$item['wrong'] === 1): ?>
+                            <th><i class="fa fa-ban" aria-hidden="true"></i></th>
+                        <? else: ?>
+                            <th><?= $key + 1 ?></th>
+                        <? endif; ?>
 
-                <tr class="info row-flight">
-                    <th>4</th>
-                    <th>С096</th>
-                    <th>25/02/2016</th>
-                    <th>Чкаловская</th>
-                    <th>26/03/2016</th>
-                    <th>Проселочная</th>
-                    <th>Г-100</th>
-                    <th>66</th>
-                </tr>
-
-                <tr class="row-flight">
-                    <th>5</th>
-                    <th>С096</th>
-                    <th>25/02/2016</th>
-                    <th>Чкаловская</th>
-                    <th>26/03/2016</th>
-                    <th>Проселочная</th>
-                    <th>Г-100</th>
-                    <th>66</th>
-                </tr>
-
-                <tr class="info row-flight">
-                    <th>6</th>
-                    <th>С096</th>
-                    <th>25/02/2016</th>
-                    <th>Чкаловская</th>
-                    <th>26/03/2016</th>
-                    <th>Проселочная</th>
-                    <th>Г-100</th>
-                    <th>66</th>
-                </tr>
+                        <th><?= $item['number'] ?></th>
+                        <th><?= $item['start_date'] ?></th>
+                        <th><?= $item['start_station'] ?></th>
+                        <th><?= $item['end_date'] ?></th>
+                        <th><?= $item['end_station'] ?></th>
+                        <th><?= $item['auto'] ?></th>
+                        <th><?= $item['capacity'] ?></th>
+                    </tr>
+                <? endforeach; ?>
             </tbody>
-
         </table>
-
     </section>
 </div>
