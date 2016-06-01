@@ -26,7 +26,7 @@
                                 <th>Пункт прибытия</th>
                                 <th>Автобус</th>
                                 <th>Вместимость</th>
-                                <th></th>
+<!--                                <th></th>-->
                             </tr>
                             </thead>
 
@@ -68,15 +68,15 @@
                                     <th><?= $item['end_station'] ?></th>
                                     <th><?= $item['auto'] ?></th>
                                     <th><?= $item['capacity'] ?></th>
-                                    <th>
-                                        <? if ((int)$item['wrong'] !== 1 && (int)$item['active'] !== 1): ?>
-                                            <button
-                                                type="button"
-                                                class="btn btn-default"
-                                                data-id="<?= $item['id'] ?>"
-                                                >Забронировать</button>
-                                        <? endif; ?>
-                                    </th>
+<!--                                    <th>-->
+<!--                                        --><?// if ((int)$item['wrong'] !== 1 && (int)$item['active'] !== 1): ?>
+<!--                                            <button-->
+<!--                                                type="button"-->
+<!--                                                class="btn btn-default"-->
+<!--                                                data-id="--><?//= $item['id'] ?><!--"-->
+<!--                                                >Забронировать</button>-->
+<!--                                        --><?// endif; ?>
+<!--                                    </th>-->
                                 </tr>
                             <? endforeach; ?>
                             </tbody>
