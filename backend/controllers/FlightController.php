@@ -138,14 +138,14 @@ class FlightController extends CustomController
                     $dateEnd   = new \DateTime($form->endDate);
 
                     $resultCompare = 0;
+                    $count = 0;
 
                     do {
                         $endTimeFlight = clone $dateStart;
-                        $endTimeFlight->add(new \DateInterval('PT' . $interval . 'M'));
-                        //$endTimeFlight = $dateStart->format('d-m-Y H:i');
+                        $endTimeFlight->add(new \DateInterval('PT' . $duration . 'M'));
 
                         $resultCompare = $endTimeFlight->diff($dateEnd);
-                        $resultCompare = $resultCompare->format('%i%');
+                        $resultCompare = $resultCompare->format('%R%i');
 
                         if ($resultCompare > 0) {
                             $newFlight = new Flight();
@@ -160,6 +160,7 @@ class FlightController extends CustomController
                             $newFlight->wrong = 0;
                             $newFlight->id_reason = 0;
                             $newFlight->save();
+                            ++$count;
                         } else {
                             break;
                         }
@@ -167,9 +168,9 @@ class FlightController extends CustomController
                         // Добавить к дате интервал движения, если он удовлетворяет условиям,
                         // то перезначаем условия и уходим на следующий круг
                         $endTimeInterval = clone $dateStart;
-                        $endTimeInterval->add(new \DateInterval('PT' . $duration . 'M'));
+                        $endTimeInterval->add(new \DateInterval('PT' . $interval . 'M'));
                         $resultCompare = $endTimeFlight->diff($dateEnd);
-                        $resultCompare = $resultCompare->format('%i%');
+                        $resultCompare = $resultCompare->format('%R%i');
 
                         if ($resultCompare > 0) {
                             $dateStart = $endTimeInterval;
@@ -178,7 +179,7 @@ class FlightController extends CustomController
                         }
                     } while ($resultCompare > 0);
 
-                    $result = 'Рейсы успешно сгенерированы';
+                    $result = 'Рейсы успешно сгенерированы. Сгенерировано рейсов : ' . $count;
                 } else {
                     $result = 'К водителю не прикреплен маршрут';
                 }

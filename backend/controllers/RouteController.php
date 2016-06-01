@@ -104,7 +104,8 @@ class RouteController extends CustomController
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
-                'model' => $model,
+                'model'    => $model,
+                'stations' => $this->getAllStations()
             ]);
         }
     }
