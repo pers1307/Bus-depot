@@ -11,7 +11,6 @@ use backend\models\Route;
 use Yii;
 use backend\models\Flight;
 use backend\models\FlightSearch;
-use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 

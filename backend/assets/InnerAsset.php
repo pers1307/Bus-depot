@@ -21,8 +21,9 @@ class InnerAsset extends AssetBundle
         'plugins/jvectormap/jquery-jvectormap-1.2.2.css',
         'plugins/datepicker/datepicker3.css',
         'plugins/daterangepicker/daterangepicker-bs3.css',
-        'plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css',
+        //'plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css',
         'css/site.css',
+        'css/timeTable.css',
     ];
     public $js = [
         //'plugins/jQuery/jQuery-2.1.4.min.js',
@@ -37,7 +38,7 @@ class InnerAsset extends AssetBundle
         'https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js',
         'plugins/daterangepicker/daterangepicker.js',
         'plugins/datepicker/bootstrap-datepicker.js',
-        'plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js',
+        //'plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js',
         'plugins/slimScroll/jquery.slimscroll.min.js',
         'plugins/fastclick/fastclick.min.js',
         'dist/js/app.min.js',

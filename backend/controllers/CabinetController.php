@@ -26,11 +26,16 @@ class CabinetController extends CustomController
         $countFlight = Flight::find()
             ->count();
 
+        $timeTable = Flight::find()
+
+            ->all();
+
         return $this->render('index', [
-            'countBus'   => $countBus,
-            'countRoute' => $countRoute,
+            'countBus'     => $countBus,
+            'countRoute'   => $countRoute,
             'countDrivers' => $countDrivers,
-            'countFlight' => $countFlight,
+            'countFlight'  => $countFlight,
+            'timeTable'    => $timeTable,
         ]);
     }
 }

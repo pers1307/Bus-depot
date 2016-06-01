@@ -1,0 +1,13 @@
+.cancel-flight {
+    text-decoration: line-through;
+}
+
+.row-flight th{
+    font-family: 'Source Sans Pro','Helvetica Neue',Helvetica,Arial,sans-serif;
+    font-weight: 500 !important;
+    font-size: 14px;
+}
+
+.red {
+    color: red;
+}
