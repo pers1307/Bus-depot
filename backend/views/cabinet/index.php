@@ -90,9 +90,17 @@
                         <? endif; ?>
 
                         <th><?= $item['number'] ?></th>
-                        <th><?= $item['start_date'] ?></th>
+                        <?
+                        $startDate = new \DateTime($item['start_date']);
+                        $formatStartDate = $startDate->format('d/m/Y H:i');
+                        ?>
+                        <th><?= $formatStartDate ?></th>
                         <th><?= $item['start_station'] ?></th>
-                        <th><?= $item['end_date'] ?></th>
+                        <?
+                        $endDate = new \DateTime($item['end_date']);
+                        $formatEndDate = $endDate->format('d/m/Y H:i');
+                        ?>
+                        <th><?= $formatEndDate ?></th>
                         <th><?= $item['end_station'] ?></th>
                         <th><?= $item['auto'] ?></th>
                         <th><?= $item['capacity'] ?></th>
