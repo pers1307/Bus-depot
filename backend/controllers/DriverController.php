@@ -191,12 +191,76 @@ class DriverController extends CustomController
     }
 
     /**
+     * salary calculation
+     */
+    public function actionSalary()
+    {
+        $post = \Yii::$app->request->post();
+
+        $classes = DriverClass::find()
+            ->asArray()
+            ->all();
+
+        $newSalary = [];
+
+        foreach ($classes as $key => $class) {
+            if (isset($post[$class['id']])) {
+                $newSalary[$key]['id'] = $class['id'];
+                $newSalary[$key]['salary'] = $post[$class['id']];
+            }
+        }
+
+        // change salary
+
+        if (!empty($newSalary)) {
+            $drivers = Driver::find()
+                ->all();
+
+            foreach ($drivers as $driver) {
+                $expirience = date('Y') - \Yii::$app->formatter->asDate($driver->start_work_date, 'yyyy');
+
+                foreach ($newSalary as $item) {
+
+                    if ((int)$item['id'] === (int)$driver->id_class) {
+                        $driver->salary = $expirience * $item['salary'];
+                        $driver->save();
+                    }
+                }
+
+            }
+        }
+
+        // output salary
+        $tableDrivers = Driver::find()
+            ->select(
+                [
+                    'passport_data.`name`',
+                    'passport_data.patronymic',
+                    'passport_data.surname',
+                    'class.`name` AS class',
+                    'FLOOR((TO_DAYS(NOW()) - TO_DAYS(start_work_date))/365) AS experiense',
+                    'driver.salary',
+                ]
+            )
+            ->join('JOIN', 'class', 'driver.id_class = class.id')
+            ->join('JOIN', 'passport_data', 'driver.id = passport_data.id')
+            ->orderBy('class.`name`')
+            ->asArray()
+            ->all();
+
+        return $this->render('salary', [
+            'tableDrivers' => $tableDrivers,
+            'classes'      => $classes,
+            'newSalary'    => $newSalary,
+        ]);
+    }
+
+    /**
      * @return array
      */
     protected function getAllRoute()
     {
         $routes = Route::find()->all();
-
         $routesArray = [];
 
         foreach ($routes as $route) {
@@ -212,7 +276,6 @@ class DriverController extends CustomController
     protected function getAllBus()
     {
         $buses = Bus::find()->all();
-
         $busesArray = [];
 
         foreach ($buses as $bus) {
@@ -228,7 +291,6 @@ class DriverController extends CustomController
     protected function getAllDriverClass()
     {
         $driverClasses = DriverClass::find()->all();
-
         $driverClassesArray = [];
 
         foreach ($driverClasses as $driverClass) {
@@ -244,7 +306,6 @@ class DriverController extends CustomController
     protected function getExperienceFilter()
     {
         $drivers = Driver::find()->all();
-
         $experienceFilter = [];
 
         foreach ($drivers as $driver) {

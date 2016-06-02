@@ -38,7 +38,7 @@
 
                     <ul class="treeview-menu menu-open" style="display: block">
                         <li>
-                            <? if (strpos($_SERVER['REQUEST_URI'], 'driver/')): ?>
+                            <? if (strpos($_SERVER['REQUEST_URI'], 'driver/') && !strpos($_SERVER['REQUEST_URI'], 'salary/')): ?>
                                 <a class="text-aqua">
                                     <i class="fa fa-users"></i> Данные
                                 </a>
@@ -60,8 +60,19 @@
                                 </a>
                             <? endif; ?>
                         </li>
-                    </ul>
 
+                        <li>
+                            <? if (strpos($_SERVER['REQUEST_URI'], 'salary/')): ?>
+                                <a class="text-aqua">
+                                    <i class="fa fa-money"></i> Расчет оклада
+                                </a>
+                            <? else: ?>
+                                <a href="/driver/salary/">
+                                    <i class="fa fa-money"></i> Расчет оклада
+                                </a>
+                            <? endif; ?>
+                        </li>
+                    </ul>
                 </li>
             <? else: ?>
                 <li class="treeview">
@@ -79,6 +90,11 @@
                         <li>
                             <a href="/driver/">
                                 <i class="fa fa-users"></i> Данные
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/driver/salary/">
+                                <i class="fa fa-money"></i> Расчет оклада
                             </a>
                         </li>
                     </ul>
@@ -258,12 +274,6 @@
                 </a>
 
                 <ul class="treeview-menu">
-                    <li>
-                        <a href="">
-                            <i class="fa fa-money"></i> Расчет оклада
-                        </a>
-                    </li>
-
                     <li>
                         <a href="">
                             <i class="fa fa-users"></i> Водители на маршруте

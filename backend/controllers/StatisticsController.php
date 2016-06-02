@@ -7,15 +7,6 @@ use backend\models\Driver;
 class StatisticsController extends CustomController
 {
     /**
-     * @return string
-     */
-    public function actionIndex()
-    {
-        return $this->render('index', [
-        ]);
-    }
-
-    /**
      * driver's statistics
      *
      * @return string
