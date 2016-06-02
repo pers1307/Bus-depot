@@ -24,6 +24,7 @@ class CabinetController extends CustomController
             ->count();
 
         $countFlight = Flight::find()
+            ->where('end_date > NOW()')
             ->count();
 
         /**

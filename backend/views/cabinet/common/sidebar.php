@@ -249,6 +249,47 @@
                     </ul>
                 </li>
             <? endif; ?>
+
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-info-circle"></i>
+                    <span>Статистика</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+
+                <ul class="treeview-menu">
+                    <li>
+                        <a href="">
+                            <i class="fa fa-money"></i> Расчет оклада
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="">
+                            <i class="fa fa-users"></i> Водители на маршруте
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="/statistics/drivers/">
+                            <i class="fa fa-male"></i> Водители
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="">
+                            <i class="fa fa-bus"></i> Автобусы на маршруте
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="">
+                            <i class="fa fa-map-marker"></i> Пункты в маршруте
+                        </a>
+                    </li>
+                </ul>
+
+            </li>
         </ul>
     </section>
 </aside>
