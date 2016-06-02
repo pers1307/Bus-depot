@@ -275,8 +275,8 @@
 
                 <ul class="treeview-menu">
                     <li>
-                        <a href="">
-                            <i class="fa fa-users"></i> Водители на маршруте
+                        <a href="/statistics/routes/">
+                            <i class="fa fa-compass"></i> Маршруты
                         </a>
                     </li>
 

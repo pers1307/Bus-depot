@@ -3,6 +3,8 @@
 namespace backend\controllers;
 
 use backend\models\Driver;
+use backend\models\Route;
+use backend\models\RouteSelectForm;
 
 class StatisticsController extends CustomController
 {
@@ -57,5 +59,40 @@ class StatisticsController extends CustomController
             'averageExperiense'       => $averageExperiense,
             'driversClassCount'       => $driversClassCount,
         ]);
+    }
+
+    public function actionRoutes()
+    {
+        $formRoute = new RouteSelectForm();
+
+        if ($formRoute->load(\Yii::$app->request->post())) {
+
+        }
+
+        $sumDuration = Route::find()
+            ->select('SUM(duration) AS summ')
+            ->asArray()
+            ->one();
+
+        return $this->render('routes', [
+            'sumDuration' => $sumDuration,
+            'routes'      => $this->getAllRoute(),
+            'formRoute'   => $formRoute
+        ]);
+    }
+
+    /**
+     * @return array
+     */
+    protected function getAllRoute()
+    {
+        $routes = Route::find()->all();
+        $routesArray = [];
+
+        foreach ($routes as $route) {
+            $routesArray[$route->id] = $route->number;
+        }
+
+        return $routesArray;
     }
 }
