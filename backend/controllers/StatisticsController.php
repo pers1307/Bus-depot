@@ -3,6 +3,7 @@
 namespace backend\controllers;
 
 use backend\models\Driver;
+use backend\models\Flight;
 use backend\models\Route;
 use backend\models\RouteSelectForm;
 
@@ -157,6 +158,53 @@ class StatisticsController extends CustomController
             'driversOnRoute'        => $driversOnRoute,
             'stationsSelectedRoute' => $stationsSelectedRoute,
             'flightSelectedRoute'   => $flightSelectedRoute,
+        ]);
+    }
+
+    public function actionStations()
+    {
+        return $this->render('stations', [
+        ]);
+    }
+
+    /**
+     * statistics of cancel flights
+     *
+     * @return string
+     */
+    public function actionCancel()
+    {
+        $cancelFlights = Flight::find()
+            ->select(
+                [
+                    'route.number',
+                    'bus.number AS auto',
+                    'passport_data.`name`',
+                    'passport_data.patronymic',
+                    'passport_data.surname',
+                    'flight.start_date',
+                    'flight.end_date',
+                    'reason.`name` AS reason',
+                ]
+            )
+            ->join('JOIN', 'reason', 'flight.id_reason = reason.id')
+            ->join('JOIN', 'driver', 'flight.id_driver = driver.id')
+            ->join('JOIN', 'passport_data', 'driver.id = passport_data.id')
+            ->join('JOIN', 'bus', 'driver.id_bus = bus.id')
+            ->join('JOIN', 'route', 'driver.id_route = route.id')
+            ->where('flight.wrong = 1')
+            ->orderBy('flight.start_date ASC')
+            ->asArray()
+            ->all();
+
+        return $this->render('cancel', [
+            'cancelFlights' => $cancelFlights
+        ]);
+    }
+
+    public function actionBuses()
+    {
+        return $this->render('cancel', [
         ]);
     }
 

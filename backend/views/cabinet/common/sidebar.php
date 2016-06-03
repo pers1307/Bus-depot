@@ -274,9 +274,22 @@
                 </a>
 
                 <ul class="treeview-menu">
+
+                    <li>
+                        <a href="/statistics/cancel/">
+                            <i class="fa fa-ban"></i> Отмененные рейсы
+                        </a>
+                    </li>
+
                     <li>
                         <a href="/statistics/routes/">
                             <i class="fa fa-compass"></i> Маршруты
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="/statistics/buses/">
+                            <i class="fa fa-bus"></i> Автобусы
                         </a>
                     </li>
 
@@ -287,16 +300,11 @@
                     </li>
 
                     <li>
-                        <a href="">
-                            <i class="fa fa-bus"></i> Автобусы на маршруте
+                        <a href="/statistics/stations/">
+                            <i class="fa fa-map-marker"></i> Станции
                         </a>
                     </li>
 
-                    <li>
-                        <a href="">
-                            <i class="fa fa-map-marker"></i> Пункты в маршруте
-                        </a>
-                    </li>
                 </ul>
 
             </li>
