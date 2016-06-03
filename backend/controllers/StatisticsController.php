@@ -61,12 +61,85 @@ class StatisticsController extends CustomController
         ]);
     }
 
+    /**
+     * route's statistics
+     *
+     * @return string
+     */
     public function actionRoutes()
     {
         $formRoute = new RouteSelectForm();
 
+        $durationSelectedRoute = null;
+        $intervalSelectedRoute = null;
+        $busesOnRoute          = null;
+        $driversOnRoute        = null;
+        $stationsSelectedRoute = null;
+        $flightSelectedRoute   = null;
+
         if ($formRoute->load(\Yii::$app->request->post())) {
 
+            $selectRoute = Route::find()
+                ->where(['id' => $formRoute->id])
+                ->one();
+
+            $durationSelectedRoute = $selectRoute->duration;
+            $intervalSelectedRoute = $selectRoute->interval;
+
+            $busesOnRoute = Route::find()
+                ->select(['bus.number'])
+                ->join('JOIN', 'driver', 'route.id = driver.id_route')
+                ->join('JOIN', 'bus', 'driver.id_bus = bus.id')
+                ->where('route.id = ' . $selectRoute->id)
+                ->asArray()
+                ->all();
+
+            $driversOnRoute = Route::find()
+                ->select(
+                    [
+                        'passport_data.`name`',
+                        'passport_data.`patronymic`',
+                        'passport_data.`surname`',
+                    ]
+                )
+                ->join('JOIN', 'driver', 'route.id = driver.id_route')
+                ->join('JOIN', 'passport_data', 'driver.id = passport_data.id')
+                ->where('route.id = ' . $selectRoute->id)
+                ->asArray()
+                ->all();
+
+            $stationsSelectedRoute = Route::find()
+                ->select(
+                    [
+                        'start_station.`name` from_station',
+                        'end_station.`name` in_station',
+                    ]
+                )
+                ->join('JOIN', 'station AS start_station', 'route.start_id_station = start_station.id')
+                ->join('JOIN', 'station AS end_station', 'route.end_id_station = end_station.id')
+                ->where('route.id = ' . $selectRoute->id)
+                ->asArray()
+                ->one();
+
+            $flightSelectedRoute = Route::find()
+                ->select(
+                    [
+                        'flight.start_date',
+                        'flight.end_date',
+                        'flight.wrong',
+                        'IF (NOW() >= flight.start_date AND NOW() <= flight.end_date, 1, 0) AS active',
+                        'passport_data.`name`',
+                        'passport_data.patronymic',
+                        'passport_data.surname',
+                    ]
+                )
+                ->join('JOIN', 'driver', 'route.id = driver.id_route')
+                ->join('JOIN', 'flight', 'driver.id = flight.id_driver')
+                ->join('JOIN', 'passport_data', 'driver.id = passport_data.id')
+                ->where('route.id = ' . $selectRoute->id . ' AND flight.end_date > NOW()')
+                ->orderBy('flight.start_date ASC')
+                ->asArray()
+                ->all();
         }
 
         $sumDuration = Route::find()
@@ -75,9 +148,15 @@ class StatisticsController extends CustomController
             ->one();
 
         return $this->render('routes', [
-            'sumDuration' => $sumDuration,
-            'routes'      => $this->getAllRoute(),
-            'formRoute'   => $formRoute
+            'sumDuration'           => $sumDuration,
+            'routes'                => $this->getAllRoute(),
+            'formRoute'             => $formRoute,
+            'durationSelectedRoute' => $durationSelectedRoute,
+            'busesOnRoute'          => $busesOnRoute,
+            'intervalSelectedRoute' => $intervalSelectedRoute,
+            'driversOnRoute'        => $driversOnRoute,
+            'stationsSelectedRoute' => $stationsSelectedRoute,
+            'flightSelectedRoute'   => $flightSelectedRoute,
         ]);
     }
 
