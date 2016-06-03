@@ -204,7 +204,7 @@ class StatisticsController extends CustomController
 
     public function actionBuses()
     {
-        return $this->render('cancel', [
+        return $this->render('buses', [
         ]);
     }
 
