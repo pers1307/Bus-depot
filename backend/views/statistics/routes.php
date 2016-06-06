@@ -61,7 +61,6 @@ $this->params['breadcrumbs'][] = $this->title;
         <?php ActiveForm::end(); ?>
     </div>
 
-
     <? if (!empty($formRoute->id)): ?>
         <div class="row">
             <section class="col-lg-6">

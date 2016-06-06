@@ -6,6 +6,8 @@ use backend\models\Driver;
 use backend\models\Flight;
 use backend\models\Route;
 use backend\models\RouteSelectForm;
+use backend\models\Station;
+use backend\models\StationSelectForm;
 
 class StatisticsController extends CustomController
 {
@@ -161,9 +163,38 @@ class StatisticsController extends CustomController
         ]);
     }
 
+    /**
+     * statistics of stations in routes
+     *
+     * @return string
+     */
     public function actionStations()
     {
+        $formStation = new StationSelectForm();
+
+        $routes = null;
+
+        if ($formStation->load(\Yii::$app->request->post())) {
+
+            $routes = Route::find()
+                ->select([
+                    'route.number',
+                    'start_station.`name` AS start_station',
+                    'end_station.`name` AS end_station',
+                    'IF (route.start_id_station = ' . $formStation->id . ', 1, 0) AS is_start',
+                    'IF (route.end_id_station = ' . $formStation->id . ', 1, 0) AS is_end'
+                ])
+                ->join('JOIN', 'station AS start_station', 'route.start_id_station = start_station.id')
+                ->join('JOIN', 'station AS end_station', 'route.end_id_station = end_station.id')
+                ->where('route.start_id_station = ' . $formStation->id . ' OR route.end_id_station = ' . $formStation->id)
+                ->asArray()
+                ->all();
+        }
+
         return $this->render('stations', [
+            'stations'    => $this->getAllStations(),
+            'formStation' => $formStation,
+            'routes'      => $routes
         ]);
     }
 
@@ -221,5 +252,20 @@ class StatisticsController extends CustomController
         }
 
         return $routesArray;
+    }
+
+    /**
+     * @return array
+     */
+    protected function getAllStations()
+    {
+        $stations = Station::find()->all();
+        $stationsArray = [];
+
+        foreach ($stations as $station) {
+            $stationsArray[$station->id] = $station->name;
+        }
+
+        return $stationsArray;
     }
 }
