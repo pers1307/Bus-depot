@@ -233,9 +233,57 @@ class StatisticsController extends CustomController
         ]);
     }
 
+    /**
+     * report
+     *
+     * @return string
+     */
     public function actionReport()
     {
+        $typeBus = Driver::find()
+            ->select(
+                [
+                    'route.number AS route',
+                    'bus.number AS bus',
+                    'bus_type.`name` AS type',
+                    'start_station.`name` AS start_station',
+                    'end_station.`name` AS end_station',
+                    'route.duration',
+                    'route.`interval`',
+                    'passport_data.`name`',
+                    'passport_data.patronymic',
+                    'passport_data.surname',
+                ]
+            )
+            ->join('JOIN', 'route', 'driver.id_route = route.id')
+            ->join('JOIN', 'bus', 'driver.id_bus = bus.id')
+            ->join('JOIN', 'bus_type', 'bus.id_type = bus_type.id')
+            ->join('JOIN', 'passport_data', 'driver.id = passport_data.id')
+            ->join('JOIN', 'station AS start_station', 'route.start_id_station = start_station.id')
+            ->join('JOIN', 'station AS end_station', 'route.end_id_station = end_station.id')
+            ->orderBy('bus_type.id ASC')
+            ->asArray()
+            ->all();
+
+        // transform array for view
+        $newArrayForBus = [];
+        $type = null;
+
+        foreach ($typeBus as $item) {
+
+            if (empty($type)) {
+                $type = $item['type'];
+            } else {
+                if ($type !== $item['type']) {
+                    $type = $item['type'];
+                }
+            }
+
+            $newArrayForBus[$type][] = $item;
+        }
+
         return $this->render('report', [
+            'typeBus' => $newArrayForBus
         ]);
     }
 

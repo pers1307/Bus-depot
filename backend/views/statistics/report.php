@@ -1,7 +1,6 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\DriverSearch */
@@ -17,25 +16,47 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <br/>
 
-<!--    <div class="row">-->
-<!--        <section class="col-lg-12">-->
-<!--            <table class="table table-hover">-->
-<!--                <thead>-->
-<!--                    <tr>-->
-<!--                        <th>Параметр</th>-->
-<!--                        <th>Результат</th>-->
-<!--                    </tr>-->
-<!--                </thead>-->
-<!---->
-<!--                <tbody>-->
-<!--                    <tr class="row-flight">-->
-<!--                        <th>Общая протяженность всех маршрутов</th>-->
-<!--                        <th>--><?//= $sumDuration['summ'] ?><!--</th>-->
-<!--                    </tr>-->
-<!--                </tbody>-->
-<!--            </table>-->
-<!--        </section>-->
-<!--    </div>-->
+    <div class="row">
+        <section class="col-lg-12">
+
+            <? foreach($typeBus as $key => $item): ?>
+                <h3><?= $key ?></h3>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Маршрут</th>
+                            <th>Автобус</th>
+                            <th>Станция отбытия</th>
+                            <th>Станция прибытия</th>
+                            <th>Длительность пути</th>
+                            <th>Интервал движения</th>
+                            <th>Водитель</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <? foreach($item as $elem): ?>
+                            <tr class="row-flight">
+                                <th><?= $elem['route'] ?></th>
+                                <th><?= $elem['bus'] ?></th>
+                                <th><?= $elem['start_station'] ?></th>
+                                <th><?= $elem['end_station'] ?></th>
+                                <th><?= $elem['duration'] ?></th>
+                                <th><?= $elem['interval'] ?></th>
+                                <th><?= $elem['name'] ?> <?= $elem['patronymic'] ?> <?= $elem['surname'] ?></th>
+                            </tr>
+                        <? endforeach; ?>
+                    </tbody>
+                </table>
+            <? endforeach; ?>
+
+        </section>
+    </div>
+
+
+
+
+
 <!---->
 <!--    <div class="row">-->
 <!--        --><?php //$form = ActiveForm::begin(); ?>
