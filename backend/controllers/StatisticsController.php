@@ -2,6 +2,7 @@
 
 namespace backend\controllers;
 
+use backend\models\Bus;
 use backend\models\Driver;
 use backend\models\Flight;
 use backend\models\Route;
@@ -268,6 +269,7 @@ class StatisticsController extends CustomController
         // transform array for view
         $newArrayForBus = [];
         $type = null;
+        $summDuration = 0;
 
         foreach ($typeBus as $item) {
 
@@ -280,10 +282,25 @@ class StatisticsController extends CustomController
             }
 
             $newArrayForBus[$type][] = $item;
+            $summDuration += $item['duration'];
         }
 
+        $busTypeCount = Bus::find()
+            ->select(
+                [
+                    'bus_type.`name`',
+                    'COUNT(*) AS count',
+                ]
+            )
+            ->join('JOIN', 'bus_type', 'bus.id_type = bus_type.id')
+            ->groupBy('bus_type.`name`')
+            ->asArray()
+            ->all();
+
         return $this->render('report', [
-            'typeBus' => $newArrayForBus
+            'typeBus'      => $newArrayForBus,
+            'summDuration' => $summDuration,
+            'busTypeCount' => $busTypeCount,
         ]);
     }
 
