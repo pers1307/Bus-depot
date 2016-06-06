@@ -233,9 +233,9 @@ class StatisticsController extends CustomController
         ]);
     }
 
-    public function actionBuses()
+    public function actionReport()
     {
-        return $this->render('buses', [
+        return $this->render('report', [
         ]);
     }
 

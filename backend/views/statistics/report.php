@@ -7,7 +7,7 @@ use yii\widgets\ActiveForm;
 /* @var $searchModel backend\models\DriverSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Автобусы';
+$this->title = 'Отчет по автопарку';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="statistics-drivers">

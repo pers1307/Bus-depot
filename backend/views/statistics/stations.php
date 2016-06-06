@@ -10,6 +10,7 @@ use yii\widgets\ActiveForm;
 $this->title = 'Статистика о станциях';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+
 <div class="statistics-drivers">
     <div class="text-center">
         <h1><?= Html::encode($this->title) ?></h1>

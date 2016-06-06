@@ -266,48 +266,114 @@
                 </li>
             <? endif; ?>
 
-            <li class="treeview">
-                <a href="#">
-                    <i class="fa fa-info-circle"></i>
-                    <span>Статистика</span>
-                    <i class="fa fa-angle-left pull-right"></i>
-                </a>
+            <? if (strpos($_SERVER['REQUEST_URI'], 'statistics/')): ?>
+                <li class="treeview active">
+                    <a href="#">
+                        <i class="fa fa-info-circle"></i>
+                        <span>Статистика</span>
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </a>
 
-                <ul class="treeview-menu">
+                    <ul class="treeview-menu">
 
-                    <li>
-                        <a href="/statistics/cancel/">
-                            <i class="fa fa-ban"></i> Отмененные рейсы
-                        </a>
-                    </li>
+                        <li>
+                            <? if (strpos($_SERVER['REQUEST_URI'], 'statistics/cancel')): ?>
+                                <a class="text-aqua">
+                                    <i class="fa fa-ban"></i> Отмененные рейсы
+                                </a>
+                            <? else: ?>
+                                <a href="/statistics/cancel/">
+                                    <i class="fa fa-ban"></i> Отмененные рейсы
+                                </a>
+                            <? endif; ?>
+                        </li>
 
-                    <li>
-                        <a href="/statistics/routes/">
-                            <i class="fa fa-compass"></i> Маршруты
-                        </a>
-                    </li>
+                        <li>
+                            <? if (strpos($_SERVER['REQUEST_URI'], 'statistics/routes')): ?>
+                                <a class="text-aqua">
+                                    <i class="fa fa-compass"></i> Маршруты
+                                </a>
+                            <? else: ?>
+                                <a href="/statistics/routes/">
+                                    <i class="fa fa-compass"></i> Маршруты
+                                </a>
+                            <? endif; ?>
+                        </li>
 
-                    <li>
-                        <a href="/statistics/buses/">
-                            <i class="fa fa-bus"></i> Автобусы
-                        </a>
-                    </li>
+                        <li>
+                            <? if (strpos($_SERVER['REQUEST_URI'], 'statistics/drivers')): ?>
+                                <a class="text-aqua">
+                                    <i class="fa fa-male"></i> Водители
+                                </a>
+                            <? else: ?>
+                                <a href="/statistics/drivers/">
+                                    <i class="fa fa-male"></i> Водители
+                                </a>
+                            <? endif; ?>
+                        </li>
 
-                    <li>
-                        <a href="/statistics/drivers/">
-                            <i class="fa fa-male"></i> Водители
-                        </a>
-                    </li>
+                        <li>
+                            <? if (strpos($_SERVER['REQUEST_URI'], 'statistics/stations')): ?>
+                                <a class="text-aqua">
+                                    <i class="fa fa-map-marker"></i> Станции
+                                </a>
+                            <? else: ?>
+                                <a href="/statistics/stations/">
+                                    <i class="fa fa-map-marker"></i> Станции
+                                </a>
+                            <? endif; ?>
+                        </li>
 
-                    <li>
-                        <a href="/statistics/stations/">
-                            <i class="fa fa-map-marker"></i> Станции
-                        </a>
-                    </li>
+                        <li>
+                            <? if (strpos($_SERVER['REQUEST_URI'], 'statistics/report')): ?>
+                                <a class="text-aqua">
+                                    <i class="fa fa-book"></i> Отчет
+                                </a>
+                            <? else: ?>
+                                <a href="/statistics/report/">
+                                    <i class="fa fa-book"></i> Отчет
+                                </a>
+                            <? endif; ?>
+                        </li>
+                    </ul>
+                </li>
+            <? else: ?>
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-info-circle"></i>
+                        <span>Статистика</span>
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </a>
 
-                </ul>
-
-            </li>
+                    <ul class="treeview-menu">
+                        <li>
+                            <a href="/statistics/cancel/">
+                                <i class="fa fa-ban"></i> Отмененные рейсы
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/statistics/routes/">
+                                <i class="fa fa-compass"></i> Маршруты
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/statistics/drivers/">
+                                <i class="fa fa-male"></i> Водители
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/statistics/stations/">
+                                <i class="fa fa-map-marker"></i> Станции
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/statistics/report/">
+                                <i class="fa fa-book"></i> Отчет
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            <? endif; ?>
         </ul>
     </section>
 </aside>
